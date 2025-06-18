@@ -40,12 +40,9 @@ const REDIRECT_ROUTES = [
   },
 ];
 
-export async function updateSession(
-  request: NextRequest,
-): Promise<NextResponse> {
+const createSupabaseClient = (request: NextRequest) => {
   let supabaseResponse = NextResponse.next({ request });
 
-  // Initialize Supabase client
   const supabase = createServerClient<Database>(
     // biome-ignore lint/style/noNonNullAssertion: <To simplify monorepo setup>
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -73,6 +70,45 @@ export async function updateSession(
     },
   );
 
+  return { supabase, supabaseResponse };
+};
+
+const handleAuthenticatedUserRedirects = (
+  request: NextRequest,
+  pathname: string,
+  userEmail: string | null | undefined,
+): NextResponse | null => {
+  // Redirect authenticated users from root to chat
+  if (pathname === "/") {
+    return createRedirectResponse(request, "/chat");
+  }
+
+  // Redirect logged-in users from signin page to chat
+  if (pathname === "/signin") {
+    return createRedirectResponse(request, "/chat");
+  }
+
+  // Redirect authenticated users from auth paths to home
+  if (pathname.startsWith("/auth")) {
+    return createRedirectResponse(request, "/");
+  }
+
+  // Check admin access
+  if (pathname.startsWith("/admin")) {
+    const isAdminUser = isAdmin(userEmail);
+    if (!isAdminUser) {
+      return createRedirectResponse(request, "/");
+    }
+  }
+
+  return null;
+};
+
+export async function updateSession(
+  request: NextRequest,
+): Promise<NextResponse> {
+  const { supabase } = createSupabaseClient(request);
+
   if (!supabase) {
     throw new Error("Supabase client not initialized");
   }
@@ -97,22 +133,13 @@ export async function updateSession(
 
   // Handle user-specific redirects first if authenticated
   if (user) {
-    // Redirect logged-in users from signin page to chat
-    if (pathname === "/signin") {
-      return createRedirectResponse(request, "/chat");
-    }
-
-    // Redirect authenticated users from auth paths to home
-    if (pathname.startsWith("/auth")) {
-      return createRedirectResponse(request, "/");
-    }
-
-    // Check admin access
-    if (pathname.startsWith("/admin")) {
-      const isAdminUser = isAdmin(user.email);
-      if (!isAdminUser) {
-        return createRedirectResponse(request, "/");
-      }
+    const userRedirect = handleAuthenticatedUserRedirects(
+      request,
+      pathname,
+      user.email,
+    );
+    if (userRedirect) {
+      return userRedirect;
     }
   }
 

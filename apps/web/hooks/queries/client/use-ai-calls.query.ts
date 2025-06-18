@@ -32,7 +32,10 @@ export const useMessageQuotas = (idUser: string | undefined | null) => {
 
       // Free users have limit of 10 messages per 3 days
       const messagesUsed = count ?? 0;
-      const messagesLimit = subscription?.status === "active" ? 200 : 10;
+      const messagesLimit =
+        subscription?.status === "active" || subscription?.status === "trialing"
+          ? 200
+          : 10;
       const percentageUsed = Math.min(
         100,
         (messagesUsed / messagesLimit) * 100,

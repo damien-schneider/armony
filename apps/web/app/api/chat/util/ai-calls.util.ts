@@ -35,7 +35,7 @@ export const checkUserSubscriptionQuotas = async ({
 }: { idUser: string }) => {
   const { status } = await getSubscriptionByUser(idUser);
 
-  if (status !== "active") {
+  if (status !== "active" && status !== "trialing") {
     // if not subscribed, check if user has reached the limit of 10 calls per 3 days
     const numberOfCalls = await getLast3daysAiCalls({ idUser });
 

@@ -80,22 +80,23 @@ export const Sidebar = () => {
 
             <Separator />
 
-            {subscription?.status !== "active" && (
-              <>
-                <SidebarMessageQuota />
-                <Button
-                  variant="ghost"
-                  className="w-full px-6 py-5 flex justify-start rounded-none dark:text-violet-300 text-violet-500"
-                  asChild={true}
-                >
-                  <Link href="/subscribe">
-                    <Verify color="currentColor" className="size-5" />
-                    Subscribe to Armony
-                  </Link>
-                </Button>
-                <Separator />
-              </>
-            )}
+            {subscription?.status !== "active" &&
+              subscription?.status !== "trialing" && (
+                <>
+                  <SidebarMessageQuota />
+                  <Button
+                    variant="ghost"
+                    className="w-full px-6 py-5 flex justify-start rounded-none dark:text-violet-300 text-violet-500"
+                    asChild={true}
+                  >
+                    <Link href="/subscribe">
+                      <Verify color="currentColor" className="size-5" />
+                      Subscribe to Armony
+                    </Link>
+                  </Button>
+                  <Separator />
+                </>
+              )}
             {/* <Button
               variant="ghost"
               className="w-full px-6 py-5 flex justify-start rounded-none"
