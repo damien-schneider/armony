@@ -97,6 +97,11 @@ export async function updateSession(
 
   // Handle user-specific redirects first if authenticated
   if (user) {
+    // Redirect authenticated users from root to chat
+    if (pathname === "/") {
+      return createRedirectResponse(request, "/chat");
+    }
+
     // Redirect logged-in users from signin page to chat
     if (pathname === "/signin") {
       return createRedirectResponse(request, "/chat");
