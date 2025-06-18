@@ -1,0 +1,15 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capability for the main window",
+  "remote": {
+    "urls": ["https://*.tauri.app", "https://*.armony.ai"]
+  },
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "opener:default",
+    "core:app:allow-fetch-data-store-identifiers",
+    "opener:allow-open-url"
+  ]
+}

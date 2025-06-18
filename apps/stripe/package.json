@@ -1,0 +1,16 @@
+{
+  "author": "",
+  "description": "",
+  "devDependencies": {
+    "stripe": "^18.2.1"
+  },
+  "keywords": [],
+  "license": "",
+  "name": "stripe",
+  "scripts": {
+    "dev": "pnpm stripe listen --forward-to localhost:3000/api/stripe/webhook",
+    "login": "pnpm stripe login",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

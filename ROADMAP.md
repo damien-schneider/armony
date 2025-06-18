@@ -1,0 +1,4 @@
+- [ ] Add a podcast generation.
+- [ ] Better handle image inputs (and selected model image input capabilities). It should not be based on the latest selected model but on the current selected model.
+- [ ] Add automatic memory management + Saving chat as memory.
+- [ ] Separate context for each variable to optimize re-rendering, or use zustand.

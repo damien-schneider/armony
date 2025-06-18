@@ -1,0 +1,51 @@
+{
+  "name": "@workspace/supabase",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "check-types": "tsc --noEmit",
+    "update-types": "supabase gen types --lang typescript --local --schema public,auth,storage > src/types/database.types.ts"
+  },
+  "peerDependencies": {
+    "next": "^15.2.3",
+    "react": "^19.0.0"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.50.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "supabase": "^2.26.9",
+    "typescript": "^5.8.3"
+  },
+  "exports": {
+    "./client": {
+      "types": "./dist/client/client.d.ts",
+      "default": "./dist/client/client.js"
+    },
+    "./admin": {
+      "types": "./dist/client/admin.d.ts",
+      "default": "./dist/client/admin.js"
+    },
+    "./middleware": {
+      "types": "./dist/client/middleware.d.ts",
+      "default": "./dist/client/middleware.js"
+    },
+    "./server": {
+      "types": "./dist/client/server.d.ts",
+      "default": "./dist/client/server.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/types/index.js"
+    },
+    "./types/database": {
+      "types": "./dist/types/database.types.d.ts",
+      "default": "./dist/types/database.types.js"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+# By default, Just uses sh.  We override it with bash for convenience.
+set shell := ["bash", "-cu"]
+
+# Show a list of recipes by default
+default:
+  @just --list --list-heading $'\n-------------------------------------------\n\n---   Available just Commands   ---\n\n-------------------------------------------\n\n'
+
+
+# -------------------------------------------------------------------
+# Apple Builds
+# -------------------------------------------------------------------
+
+# Shows the history of notarization requests.
+[group("Apple Builds")]
+apple-notary-history:
+  source .env && xcrun notarytool history --key "$APPLE_API_KEY_PATH" --key-id "$APPLE_API_KEY" --issuer "$APPLE_API_ISSUER"
+
+# Checks the status of a notarization request.
+[group("Apple Builds")]
+apple-notary-check-status UUID:
+  source .env && xcrun notarytool log {{UUID}} --key "$APPLE_API_KEY_PATH" --key-id "$APPLE_API_KEY" --issuer "$APPLE_API_ISSUER"
+
+# Checks the status of a notarization for the aarch64 dmg.
+apple-checking-dmg-notarization-aarch64:
+  xcrun stapler validate ./src-tauri/target/release/bundle/dmg/Armony_0.1.0_aarch64.dmg
+
+# Checks the status of a notarization for the universal dmg.
+apple-checking-dmg-notarization-universal:
+  xcrun stapler validate ./src-tauri/target/universal-apple-darwin/release/bundle/dmg/Armony_0.1.0_universal.dmg
+
+
+
+# -------------------------------------------------------------------
+# Tauri Commands
+# -------------------------------------------------------------------
+
+# Shows the history of notarization requests.
+[group("Tauri Commands")]
+tauri-generate-icons:
+  pnpm tauri icon ./public/icon-reference.png
+
+# Builds the app for the current platform.
+tauri-build:
+  pnpm tauri build
+
+
+# Builds the app for the current platform.
+tauri-build-macos:
+  source .env && pnpm tauri bundle --bundles dmg
+
+# "build-macos": "bash -c 'source .env && env | grep ^APPLE_ && tauri bundle --bundles dmg'",
+
+
+# Dev on IOS overides the devUrl to armony.ai
+[group("Development")]
+dev-ios:
+  pnpm tauri ios dev

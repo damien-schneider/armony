@@ -1,0 +1,16 @@
+.centered-rotating {
+  animation: rotate360 20s linear infinite;
+}
+
+.centered-rotating-inversed {
+  animation: rotate360 20s linear infinite reverse;
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

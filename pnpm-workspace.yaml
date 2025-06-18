@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - '@tailwindcss/oxide'
+  - bcrypt
+  - core-js
+  - core-js-pure
+  - esbuild
+  - sharp
+  - supabase
