@@ -13,7 +13,12 @@ export default function SidebarMessageQuota() {
   const { data: quotas, isLoading } = useMessageQuotas(idUser);
 
   // Don't show for subscribed users or while loading
-  if (subscription?.status === "active" || isLoading || !quotas) {
+  if (
+    subscription?.status === "active" ||
+    subscription?.status === "trialing" ||
+    isLoading ||
+    !quotas
+  ) {
     return null;
   }
 
