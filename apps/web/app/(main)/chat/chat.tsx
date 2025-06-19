@@ -82,7 +82,7 @@ function ChatComponent({
   return (
     <div className="relative w-full flex flex-col h-full pb-2 justify-center">
       <AiConversation />
-      <div className={cn("relative max-w-2xl mx-auto w-full px-2")}>
+      <div className={cn("relative max-w-4xl mx-auto w-full px-2")}>
         <SendChatBottomBar />
       </div>
       {messages.length === 0 && <EmptyChatModelSelection />}
