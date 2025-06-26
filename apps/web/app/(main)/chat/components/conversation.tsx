@@ -38,7 +38,7 @@ export function AiConversation() {
     <>
       <ScrollArea className="h-full min-h-2" ref={container}>
         <ScrollAreaViewport>
-          <div className="mx-auto max-w-2xl space-y-12 px-5.5 pt-12 pb-8">
+          <div className="mx-auto max-w-3xl space-y-12 px-5.5 pt-12 pb-8">
             {messages.map((message, index) => {
               const isLastMessage = index === messages.length - 1;
 
