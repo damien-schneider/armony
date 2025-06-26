@@ -1,10 +1,10 @@
 "use client";
-import { useAllUserSnippets } from "@/hooks/queries/client/use-snippets.query";
-import { useSession } from "@/hooks/queries/use-session";
 import type { Editor } from "@tiptap/react";
 import type { Tables } from "@workspace/supabase/types/database";
-import { type ReactNode, createContext, use, useEffect, useState } from "react";
+import { createContext, type ReactNode, use, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useAllUserSnippets } from "@/hooks/queries/client/use-snippets.query";
+import { useSession } from "@/hooks/queries/use-session";
 
 type SnippetsQueryResult = Pick<
   Tables<"snippets">,
@@ -275,7 +275,10 @@ const processSnippetContent = (content: string): string => {
 const getFilteredSnippets = ({
   snippetList,
   search,
-}: { snippetList: SnippetsQueryResult[]; search: string }) => {
+}: {
+  snippetList: SnippetsQueryResult[];
+  search: string;
+}) => {
   // if (prefix !== "/") {
   //   return [];
   // }

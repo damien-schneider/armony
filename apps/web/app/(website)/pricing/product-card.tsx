@@ -68,7 +68,7 @@ export function ProductCard({
   return (
     <article
       className={cn(
-        "relative rounded-xl border max-w-96 w-full",
+        "relative w-full max-w-96 rounded-xl border",
         currentPlan && "border-primary",
         isRecommended && "border-primary",
       )}
@@ -87,13 +87,13 @@ export function ProductCard({
             <div className="flex-1 md:ml-6 xl:ml-0">
               <p
                 className={cn(
-                  "mb-1 text-xl font-medium sm:text-2xl",
+                  "mb-1 font-medium text-xl sm:text-2xl",
                   currentPlan && "text-primary",
                 )}
               >
                 {product.name}
               </p>
-              <p className="text-xs text-muted-foreground sm:text-sm">
+              <p className="text-muted-foreground text-xs sm:text-sm">
                 {product.description}
               </p>
             </div>
@@ -101,13 +101,13 @@ export function ProductCard({
           <div>
             <h2
               className={cn(
-                "mb-1 flex items-start text-2xl font-medium md:text-3xl 2xl:text-4xl",
+                "mb-1 flex items-start font-medium text-2xl md:text-3xl 2xl:text-4xl",
                 currentPlan && "text-primary",
               )}
             >
               {priceString}
             </h2>
-            <p className="text-xs font-medium text-muted-foreground">
+            <p className="font-medium text-muted-foreground text-xs">
               / {billingInterval}
             </p>
           </div>
@@ -125,19 +125,19 @@ export function ProductCard({
       {/* Main Content Section */}
       <main
         className={cn(
-          "space-y-6 border-t border-border p-4 sm:p-6 block",
+          "block space-y-6 border-border border-t p-4 sm:p-6",
           isRecommended && "border-primary",
         )}
       >
         <div>
-          <H3 className="mb-3 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+          <H3 className="mb-3 font-semibold text-muted-foreground text-xs uppercase tracking-wider">
             Highlights features
           </H3>
           <ul className="space-y-3">
             {featureListPremium.available.map((feature) => (
               <li
                 key={feature}
-                className="flex items-center gap-x-2 text-xs font-medium text-muted-foreground"
+                className="flex items-center gap-x-2 font-medium text-muted-foreground text-xs"
               >
                 <TickSquare
                   color="currentColor"
@@ -149,19 +149,19 @@ export function ProductCard({
           </ul>
         </div>
         {/* Add Fair Use text */}
-        <p className="text-xs text-muted-foreground mt-4">
+        <p className="mt-4 text-muted-foreground text-xs">
           *Subject to fair use
         </p>
 
         <div>
-          <H3 className="mb-3 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+          <H3 className="mb-3 font-semibold text-muted-foreground text-xs uppercase tracking-wider">
             Coming soon
           </H3>
           <ul className="space-y-3">
             {featureListPremium.comingSoon.map((feature) => (
               <li
                 key={feature}
-                className="flex items-center gap-x-2 text-xs font-medium text-muted-foreground"
+                className="flex items-center gap-x-2 font-medium text-muted-foreground text-xs"
               >
                 <Timer
                   color="currentColor"
@@ -176,10 +176,10 @@ export function ProductCard({
 
       {/* Current Plan Badge */}
       {currentPlan && (
-        <div className="absolute top-0 right-0 translate-x-2 -translate-y-3 z-10">
+        <div className="-translate-y-3 absolute top-0 right-0 z-10 translate-x-2">
           <Badge
             variant="default"
-            className="px-3 py-1 text-xs font-semibold flex items-center gap-1"
+            className="flex items-center gap-1 px-3 py-1 font-semibold text-xs"
           >
             Active Plan
           </Badge>

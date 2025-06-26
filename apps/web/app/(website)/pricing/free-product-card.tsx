@@ -24,23 +24,23 @@ export function FreeProductCard({
   onGetStarted: () => void;
 }) {
   return (
-    <article className="relative rounded-xl border w-full max-w-96">
+    <article className="relative w-full max-w-96 rounded-xl border">
       {/* Header Section */}
       <header className="p-4 sm:p-6 xl:pt-8">
         <div className="mb-6 md:flex md:items-center xl:block">
           <div className="mb-1 flex md:flex-1 md:flex-row-reverse md:items-center xl:mb-6 xl:flex-col-reverse xl:items-start xl:gap-y-4">
             <div className="flex-1 md:ml-6 xl:ml-0">
-              <p className="mb-1 text-xl font-medium sm:text-2xl">Free</p>
-              <p className="text-xs text-muted-foreground sm:text-sm">
+              <p className="mb-1 font-medium text-xl sm:text-2xl">Free</p>
+              <p className="text-muted-foreground text-xs sm:text-sm">
                 Try Armony with basic features
               </p>
             </div>
           </div>
           <div>
-            <h2 className="mb-1 flex items-start text-2xl font-medium md:text-3xl 2xl:text-4xl">
+            <h2 className="mb-1 flex items-start font-medium text-2xl md:text-3xl 2xl:text-4xl">
               $0
             </h2>
-            <p className="text-xs font-medium text-muted-foreground">forever</p>
+            <p className="font-medium text-muted-foreground text-xs">forever</p>
           </div>
         </div>
         <Button variant="outline" onClick={onGetStarted} className="w-full">
@@ -49,16 +49,16 @@ export function FreeProductCard({
       </header>
 
       {/* Main Content Section */}
-      <main className="space-y-6 border-t border-border p-4 sm:p-6 block">
+      <main className="block space-y-6 border-border border-t p-4 sm:p-6">
         <div>
-          <H3 className="mb-3 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+          <H3 className="mb-3 font-semibold text-muted-foreground text-xs uppercase tracking-wider">
             Free tier includes
           </H3>
           <ul className="space-y-3">
             {freeFeatures.map((feature) => (
               <li
                 key={feature}
-                className="flex items-center gap-x-2 text-xs font-medium text-muted-foreground"
+                className="flex items-center gap-x-2 font-medium text-muted-foreground text-xs"
               >
                 <TickSquare
                   color="currentColor"
@@ -71,14 +71,14 @@ export function FreeProductCard({
         </div>
 
         <div>
-          <H3 className="mb-3 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+          <H3 className="mb-3 font-semibold text-muted-foreground text-xs uppercase tracking-wider">
             Not included
           </H3>
           <ul className="space-y-3">
             {notIncludedFeatures.map((feature) => (
               <li
                 key={feature}
-                className="flex items-center gap-x-2 text-xs font-medium text-muted-foreground opacity-70"
+                className="flex items-center gap-x-2 font-medium text-muted-foreground text-xs opacity-70"
               >
                 <CloseSquare
                   color="currentColor"

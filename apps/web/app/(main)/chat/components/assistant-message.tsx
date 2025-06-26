@@ -1,3 +1,9 @@
+import { cn } from "@workspace/ui/lib/utils";
+// import { Slider } from "@workspace/ui/components/slider";
+import type { Message } from "ai";
+import { motion } from "motion/react";
+import Link from "next/link";
+import type { ComponentProps } from "react";
 import { AssistantImageMessage } from "@/app/(main)/chat/components/assistant-image-message";
 import { CopyToClipboardButton } from "@/app/(main)/chat/components/copy-button";
 import { MemoizedMarkdown } from "@/app/(main)/chat/components/memoized-markdown/memoized-markdown";
@@ -5,12 +11,6 @@ import { ReasoningMessagePart } from "@/app/(main)/chat/components/reasoning-mes
 import { useSharedAiChat } from "@/app/(main)/contexts/ai-sdk-chat-context";
 import { useChatContext } from "@/app/(main)/contexts/chat-context";
 import { TextShimmerWave } from "@/components/motion-primitives/text-shimmer-effect";
-import { cn } from "@workspace/ui/lib/utils";
-// import { Slider } from "@workspace/ui/components/slider";
-import type { Message } from "ai";
-import { motion } from "motion/react";
-import Link from "next/link";
-import type { ComponentProps } from "react";
 
 export function AssistantMessage({
   message,
@@ -44,7 +44,7 @@ export function AssistantMessage({
       </div>
       <div
         className={cn(
-          "text-secondary-foreground max-w-3xl",
+          "max-w-3xl text-secondary-foreground",
           "prose prose-neutral dark:prose-invert", //TODO: To remove little by little
         )}
       >

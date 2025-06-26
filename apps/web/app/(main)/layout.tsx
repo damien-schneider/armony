@@ -1,12 +1,12 @@
 "use client";
-import { Sidebar } from "@/app/(main)/components/sidebar";
-import { SpaceContextProvider } from "@/app/(main)/contexts/space-context";
-import { useSidebarOpening } from "@/hooks/use-sidebar-opening";
 import { Button } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
 import { DirectInbox, Profile } from "iconsax-react";
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
+import { Sidebar } from "@/app/(main)/components/sidebar";
+import { SpaceContextProvider } from "@/app/(main)/contexts/space-context";
+import { useSidebarOpening } from "@/hooks/use-sidebar-opening";
 
 export default function layout({ children }: { children: ReactNode }) {
   return (
@@ -25,20 +25,20 @@ const MainContent = ({ children }: { children: ReactNode }) => {
       className={cn(
         "h-dvh",
         // Necessary to prevent the body from scrolling when the sidebar is open on mobile
-        isSidebarOpen ? "md:overflow-visible overflow-hidden" : "overflow-auto",
+        isSidebarOpen ? "overflow-hidden md:overflow-visible" : "overflow-auto",
       )}
     >
       <Sidebar />
       <div
         className={cn(
-          "h-full w-full relative transition-all duration-500 ease-in-out",
+          "relative h-full w-full transition-all duration-500 ease-in-out",
           isSidebarOpen
-            ? "opacity-50 md:opacity-100 translate-x-80 md:translate-x-0 md:pl-80"
+            ? "pointer-events-none translate-x-80 opacity-50 md:pointer-events-auto md:translate-x-0 md:pl-80 md:opacity-100"
             : "",
         )}
       >
         {children}
-        <div className="absolute inline-flex items-center gap-2 top-4 right-4">
+        <div className="absolute top-4 right-4 inline-flex items-center gap-2">
           <Button
             variant="ghost"
             onClick={() =>

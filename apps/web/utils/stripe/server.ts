@@ -1,7 +1,7 @@
 "use server";
 
-import { stripe } from "@/utils/stripe/config";
 import { createServerClient } from "@workspace/supabase/server";
+import type { Tables } from "@workspace/supabase/types/database";
 import type Stripe from "stripe";
 
 import { createOrRetrieveCustomer } from "@/app/api/stripe/webhook/supabase-admin-stripe-handler";
@@ -10,7 +10,7 @@ import {
   getErrorRedirect,
   getURL,
 } from "@/utils/helpers";
-import type { Tables } from "@workspace/supabase/types/database";
+import { stripe } from "@/utils/stripe/config";
 
 type Price = Tables<"prices">;
 

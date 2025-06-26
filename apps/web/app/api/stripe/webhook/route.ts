@@ -1,3 +1,5 @@
+import { headers } from "next/headers";
+import type Stripe from "stripe";
 import {
   deletePriceRecord,
   deleteProductRecord,
@@ -7,8 +9,6 @@ import {
 } from "@/app/api/stripe/webhook/supabase-admin-stripe-handler";
 import { envServer } from "@/env/server";
 import { stripe } from "@/utils/stripe/config";
-import { headers } from "next/headers";
-import type Stripe from "stripe";
 
 const relevantEvents = new Set([
   "product.created",
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     );
     console.log(`🔔  Webhook received: ${event.type}`);
 
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    // biome-ignore lint/suspicious/noExplicitAny: <>
   } catch (err: any) {
     console.log(`❌ Error message: ${err.message}`);
     return new Response(`Webhook Error: ${err.message}`, { status: 400 });

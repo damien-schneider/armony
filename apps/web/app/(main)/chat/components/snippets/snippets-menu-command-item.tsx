@@ -1,7 +1,6 @@
 "use client";
 
-import { useDeleteSnippet } from "@/hooks/queries/client/use-snippets.mutation";
-import { useSession } from "@/hooks/queries/use-session";
+import type { Tables } from "@workspace/supabase/types/database";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,11 +14,12 @@ import {
 } from "@workspace/ui/components/alert-dialog";
 import { Button } from "@workspace/ui/components/button";
 import { CommandItem } from "@workspace/ui/components/command";
+import { Edit2, Trash } from "iconsax-react";
 import { toast } from "sonner";
 
 import { EditSnippetDialog } from "@/app/(main)/chat/components/snippets/edit-snippet-dialog";
-import type { Tables } from "@workspace/supabase/types/database";
-import { Edit2, Trash } from "iconsax-react";
+import { useDeleteSnippet } from "@/hooks/queries/client/use-snippets.mutation";
+import { useSession } from "@/hooks/queries/use-session";
 
 export function SnippetsMenuCommandItem({
   snippet,
@@ -34,36 +34,37 @@ export function SnippetsMenuCommandItem({
 
   return (
     <CommandItem
-      value={snippet.id}
-      onSelect={() => onSelect(snippet.id)}
       className="group flex items-center justify-between rounded-md"
+      onSelect={() => onSelect(snippet.id)}
+      value={snippet.id}
     >
       <span>
-        <span className="font-medium inline-flex justify-between w-full">
+        <span className="inline-flex w-full justify-between font-medium">
           <span className="truncate">{snippet.title}</span>
         </span>
-        <span className="text-muted-foreground ml-2 text-sm line-clamp-1">
+        <span className="ml-2 line-clamp-1 text-muted-foreground text-sm">
           {snippet.content}
         </span>
       </span>
-      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <> */}
+      {/** biome-ignore lint/a11y/noStaticElementInteractions: <> */}
       <div
-        className="hidden group-data-[selected=true]:inline-flex items-center gap-1"
+        className="hidden items-center gap-1 group-data-[selected=true]:inline-flex"
         onClick={(e) => e.stopPropagation()}
       >
         <EditSnippetDialog
-          snippetId={snippet.id}
-          initialTitle={snippet.title}
           initialContent={snippet.content}
+          initialTitle={snippet.title}
+          snippetId={snippet.id}
         >
-          <Button variant="ghost" size="icon-sm">
+          <Button size="icon-sm" variant="ghost">
             <Edit2 color="currentColor" />
           </Button>
         </EditSnippetDialog>
 
         <AlertDialog>
           <AlertDialogTrigger asChild={true}>
-            <Button variant="ghost" size="icon-sm">
+            <Button size="icon-sm" variant="ghost">
               <Trash color="currentColor" />
             </Button>
           </AlertDialogTrigger>

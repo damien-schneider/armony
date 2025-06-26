@@ -1,7 +1,5 @@
 // import { Geist, Geist_Mono } from "next/font/google";
 import "@workspace/ui/globals.css";
-import { Providers } from "@/components/providers";
-import { envClient } from "@/env/client";
 import { cn } from "@workspace/ui/lib/utils";
 import type { Metadata } from "next";
 import {
@@ -10,6 +8,9 @@ import {
 } from "next/font/google";
 import type { ReactNode } from "react";
 import { Toaster } from "sonner";
+import { Providers } from "@/components/providers";
+import { envClient } from "@/env/client";
+
 // const fontLexend = Lexend({
 //   subsets: ["latin"],
 //   variable: "--font-sans",

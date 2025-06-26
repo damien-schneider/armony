@@ -1,8 +1,8 @@
 "use client";
-import { useChatTiptapEditor } from "@/app/(main)/chat/components/bottom-chat-text-area/use-chat-tiptap-editor";
 import type { Editor } from "@tiptap/react";
-import { createContext, use } from "react";
 import type { KeyboardEvent, ReactNode } from "react";
+import { createContext, use } from "react";
+import { useChatTiptapEditor } from "@/app/(main)/chat/components/bottom-chat-text-area/use-chat-tiptap-editor";
 
 interface ChatTiptapContextType {
   editor: Editor | null;

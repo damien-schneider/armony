@@ -1,3 +1,5 @@
+import { createServerClient } from "@workspace/supabase/server";
+import { appendResponseMessages, streamText } from "ai";
 import type { AiModelKey } from "@/app/api/chat/ai-models.type";
 import { validateChatApiBody } from "@/app/api/chat/chat-body-validator";
 import { getSystemPrompt } from "@/app/api/chat/lib/prompting.lib";
@@ -11,8 +13,6 @@ import { generateImageTool } from "@/app/api/chat/util/generation-image.util";
 import { generateConversationTitle } from "@/app/api/chat/util/generation-title.util";
 import { prepareInputMessageContent } from "@/app/api/chat/util/input-message.utils";
 import { getAuthenticatedUserOrThrowError } from "@/app/api/utils/authentication-route.util";
-import { createServerClient } from "@workspace/supabase/server";
-import { appendResponseMessages, streamText } from "ai";
 // This variable is used by the vercel sdk by default - do not remove it
 // Allow streaming responses up to 60 seconds
 export const maxDuration = 60;
@@ -163,7 +163,7 @@ export async function POST(req: Request) {
               message.experimental_attachments &&
               message.experimental_attachments.length > 0
             ) {
-              const { content, ...messageWithoutContent } = message;
+              const { content: _content, ...messageWithoutContent } = message;
               return messageWithoutContent;
             }
             return message;

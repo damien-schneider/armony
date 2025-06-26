@@ -1,13 +1,13 @@
 "use client";
+import type { Tables } from "@workspace/supabase/types/database";
+import { createContext, type ReactNode, use, useEffect } from "react";
+import { useLocalStorage } from "usehooks-ts";
 import {
   useSpaceById,
   useSpaceListByIdUser,
 } from "@/hooks/queries/client/use-spaces.query";
 import { useSession } from "@/hooks/queries/use-session";
 import { localStorageKeys } from "@/lib/local-storage-keys";
-import type { Tables } from "@workspace/supabase/types/database";
-import { type ReactNode, createContext, use, useEffect } from "react";
-import { useLocalStorage } from "usehooks-ts";
 
 type SpaceContextType = {
   activeIdSpace: string | null;
@@ -50,7 +50,7 @@ const SpaceContextProvider = ({ children }: { children: ReactNode }) => {
     if (!activeIdSpace && firstSpace) {
       changeSpaceById(firstSpace.id);
     }
-    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <>
   }, [activeIdSpace, spaceList, changeSpaceById, isLoadingActiveSpace]);
 
   return (

@@ -68,7 +68,7 @@ export function MessageEditTextarea({
     <form
       onSubmit={handleFormSubmit}
       className={cn(
-        "flex flex-col gap-2 w-full transition-all duration-300 ease-in-out h-full",
+        "flex h-full w-full flex-col gap-2 transition-all duration-300 ease-in-out",
         // isClient ? "max-h-32" : "max-h-12",
       )}
       style={{ maxHeight: isClient ? "128px" : `${debouncedInitialHeight}px` }}
@@ -78,7 +78,7 @@ export function MessageEditTextarea({
         value={content}
         onChange={(e) => setContent(e.target.value)}
         onKeyDown={handleKeyDown}
-        className="w-full resize-none bg-background-2 rounded-xl focus-visible:ring-primary/40 min-h-[100px] transition-all duration-300"
+        className="min-h-[100px] w-full resize-none rounded-xl bg-background-2 transition-all duration-300 focus-visible:ring-primary/40"
       />
       <motion.div
         className="flex justify-end gap-2"

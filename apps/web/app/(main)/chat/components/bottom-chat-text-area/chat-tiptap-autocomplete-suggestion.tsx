@@ -1,12 +1,12 @@
-import { useChatTiptapContext } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-context";
-import { useChatContext } from "@/app/(main)/contexts/chat-context";
-import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { useCompletion } from "@ai-sdk/react";
 import { useKeyPress } from "@workspace/ui/hooks/use-key-press";
 import { cn } from "@workspace/ui/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect } from "react";
 import { useDebounceValue } from "usehooks-ts";
+import { useChatTiptapContext } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-context";
+import { useChatContext } from "@/app/(main)/contexts/chat-context";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
 
 const doesStringEndsWithWhitespace = (str: string) => {
   const trimmedStr = str.trimEnd();
@@ -107,14 +107,14 @@ export function ChatTiptapAutocompleteSuggestion() {
           exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.1 }}
           className={cn(
-            "absolute w-full left-0 px-3 bottom-[calc(100%-16px)] *:pb-5 z-10",
+            "absolute bottom-[calc(100%-16px)] left-0 z-10 w-full px-3 *:pb-5",
             isCompletionLoading && "opacity-60",
           )}
         >
-          <div className="flex w-full items-center gap-2 rounded-t-xl border-t border-x border-border bg-background pl-3 pr-1 py-1 text-sm">
+          <div className="flex w-full items-center gap-2 rounded-t-xl border-border border-x border-t bg-background py-1 pr-1 pl-3 text-sm">
             <TextEffect
               preset="fade-in-blur"
-              className="w-full line-clamp-2 overflow-visible"
+              className="line-clamp-2 w-full overflow-visible"
               // speedReveal={1.1}
               // speedSegment={0.3}
               delay={0.1}
@@ -126,7 +126,7 @@ export function ChatTiptapAutocompleteSuggestion() {
             <button
               type="button"
               tabIndex={-1}
-              className="ml-2 rounded px-2 py-1 text-xs font-medium text-primary hover:bg-primary/10 transition"
+              className="ml-2 rounded px-2 py-1 font-medium text-primary text-xs transition hover:bg-primary/10"
               onClick={handleAcceptSuggestion}
             >
               Tab
@@ -134,7 +134,7 @@ export function ChatTiptapAutocompleteSuggestion() {
             <button
               type="button"
               tabIndex={-1}
-              className="ml-1 rounded px-2 py-1 text-xs font-medium text-muted-foreground hover:bg-muted transition rounded-tr-lg"
+              className="ml-1 rounded rounded-tr-lg px-2 py-1 font-medium text-muted-foreground text-xs transition hover:bg-muted"
               onClick={handleRejectSuggestion}
             >
               Esc

@@ -2,7 +2,14 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "quickfix.biome": "always"
+    "quickfix.biome": "always",
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
   },
-  "editor.defaultFormatter": "biomejs.biome"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript][typescript][javascriptreact][typescriptreact][json][jsonc][css][graphql]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "emmet.showExpandedAbbreviation": "never"
 }

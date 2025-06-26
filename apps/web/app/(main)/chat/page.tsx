@@ -1,9 +1,9 @@
-import Chat from "@/app/(main)/chat/chat";
-import CreateSpaceDialog from "@/app/(main)/components/create-space-dialog";
 import { createServerClient } from "@workspace/supabase/server";
 import { Button } from "@workspace/ui/components/button";
 import { P } from "@workspace/ui/components/typography";
 import { Add } from "iconsax-react";
+import Chat from "@/app/(main)/chat/chat";
+import CreateSpaceDialog from "@/app/(main)/components/create-space-dialog";
 
 export default async function PageChat() {
   const supabase = await createServerClient();
@@ -24,8 +24,8 @@ export default async function PageChat() {
 
   if (!spaces || spaces.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full gap-4">
-        <P className="text-muted-foreground text-center">
+      <div className="flex h-full flex-col items-center justify-center gap-4">
+        <P className="text-center text-muted-foreground">
           You don&apos;t have any spaces yet.
           <br />
           Create one to get started!

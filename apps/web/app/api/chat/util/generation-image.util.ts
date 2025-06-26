@@ -1,11 +1,14 @@
 import { createServerClient } from "@workspace/supabase/server";
-import { type ImageModel, experimental_generateImage, tool } from "ai";
+import { experimental_generateImage, type ImageModel, tool } from "ai";
 import { v4 } from "uuid";
 import { z } from "zod";
 export const generateImageTool = ({
   idUser,
   imageModel,
-}: { idUser: string; imageModel: ImageModel }) => {
+}: {
+  idUser: string;
+  imageModel: ImageModel;
+}) => {
   return {
     generateImage: tool({
       description:

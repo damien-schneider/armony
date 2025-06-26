@@ -1,7 +1,5 @@
 "use client";
 
-import { useUpdateSnippet } from "@/hooks/queries/client/use-snippets.mutation";
-import { useSession } from "@/hooks/queries/use-session";
 import { Button } from "@workspace/ui/components/button";
 import {
   Dialog,
@@ -16,6 +14,8 @@ import { Label } from "@workspace/ui/components/label";
 import { Textarea } from "@workspace/ui/components/textarea";
 import { type FormEvent, type ReactNode, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useUpdateSnippet } from "@/hooks/queries/client/use-snippets.mutation";
+import { useSession } from "@/hooks/queries/use-session";
 
 interface EditSnippetDialogProps {
   children: ReactNode;

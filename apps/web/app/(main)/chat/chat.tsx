@@ -1,4 +1,9 @@
 "use client";
+import type { Tables } from "@workspace/supabase/types/database";
+import { P } from "@workspace/ui/components/typography";
+import { cn } from "@workspace/ui/lib/utils";
+import { useEffect } from "react";
+import { v4 } from "uuid";
 import { SendChatBottomBar } from "@/app/(main)/chat/components/bottom-chat-text-area/send-chat-bottom-bar";
 import { AiConversation } from "@/app/(main)/chat/components/conversation";
 import { EmptyChatModelSelection } from "@/app/(main)/chat/components/model-selection";
@@ -9,12 +14,6 @@ import {
 import { useChatContext } from "@/app/(main)/contexts/chat-context";
 import { useSpaceContext } from "@/app/(main)/contexts/space-context";
 import type { Tone } from "@/app/api/chat/lib/prompting.lib";
-import type { Tables } from "@workspace/supabase/types/database";
-import {} from "@workspace/ui/components/alert";
-import { P } from "@workspace/ui/components/typography";
-import { cn } from "@workspace/ui/lib/utils";
-import { useEffect } from "react";
-import { v4 } from "uuid";
 
 export default function Chat({
   initialChat,
@@ -29,7 +28,7 @@ export default function Chat({
   const { activeSpace } = useSpaceContext();
   if (!activeSpace?.id) {
     return (
-      <div className="flex items-center justify-center h-full">
+      <div className="flex h-full items-center justify-center">
         <P className="text-muted-foreground">
           Please select a space to start a conversation.
         </P>
@@ -39,8 +38,8 @@ export default function Chat({
 
   return (
     <AiSdkChatContextProvider
-      initialChat={initialChat}
       chatId={initialChat?.id ?? newIdChat}
+      initialChat={initialChat}
     >
       <ChatComponent initialChat={initialChat} />
     </AiSdkChatContextProvider>
@@ -80,12 +79,12 @@ function ChatComponent({
   }
 
   return (
-    <div className="relative w-full flex flex-col h-full pb-2 justify-center">
+    <div className="relative flex h-full w-full flex-col justify-end pb-2">
       <AiConversation />
-      <div className={cn("relative max-w-2xl mx-auto w-full px-2")}>
+      {messages.length === 0 && <EmptyChatModelSelection />}
+      <div className={cn("relative mx-auto w-full max-w-3xl px-2")}>
         <SendChatBottomBar />
       </div>
-      {messages.length === 0 && <EmptyChatModelSelection />}
     </div>
   );
 }

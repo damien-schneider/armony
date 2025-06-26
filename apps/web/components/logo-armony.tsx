@@ -14,7 +14,7 @@ export function LogoArmony({
         viewBox="0 0 786 169"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={cn("h-6 w-24 dark:text-white text-black", className)}
+        className={cn("h-6 w-24 text-black dark:text-white", className)}
         {...props}
       >
         <title>Armony Logo</title>
@@ -58,7 +58,7 @@ export function LogoArmony({
       viewBox="0 0 460 329"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn("size-10 dark:text-white text-black", className)}
+      className={cn("size-10 text-black dark:text-white", className)}
       {...props}
     >
       <title>Armony Logo</title>

@@ -1,5 +1,7 @@
 "use client";
 
+import { createClient } from "@workspace/supabase/client";
+import { Button } from "@workspace/ui/components/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -21,15 +23,12 @@ import {
   User,
 } from "iconsax-react";
 import { useRouter } from "next/navigation";
-
+import { useState } from "react";
 import { useSpaceContext } from "@/app/(main)/contexts/space-context";
 import { useChatListByIdSpace } from "@/hooks/queries/client/use-chats.query";
 import { useCustomerPortal } from "@/hooks/queries/client/use-customer-portal.query";
 import { useSpaceListByIdUser } from "@/hooks/queries/client/use-spaces.query";
 import { useSession } from "@/hooks/queries/use-session";
-import { createClient } from "@workspace/supabase/client";
-import { Button } from "@workspace/ui/components/button";
-import { useState } from "react";
 
 export function SearchMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,7 +103,7 @@ export function SearchMenu() {
                 <div className="mr-2">{space.emoji || "🪐"}</div>
                 <span>{space.title}</span>
                 {activeSpace?.id === space.id && (
-                  <CommandShortcut className="text-xs tracking-normal text-foreground/50">
+                  <CommandShortcut className="text-foreground/50 text-xs tracking-normal">
                     Active
                   </CommandShortcut>
                 )}
@@ -128,7 +127,7 @@ export function SearchMenu() {
                   <MessageText className="mr-2 h-4 w-4" color="currentColor" />
                   <span>{chat.title ?? "Untitled Chat"}</span>
                 </div>
-                <span className="text-xs text-foreground/50">
+                <span className="text-foreground/50 text-xs">
                   {format(new Date(chat.created_at), "MMMM, dd")}
                 </span>
               </CommandItem>

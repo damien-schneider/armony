@@ -1,16 +1,5 @@
 "use client";
 
-import { useSpaceContext } from "@/app/(main)/contexts/space-context";
-import { ContentSpaceEditor } from "@/app/(main)/space/[id_space]/content-space-editor";
-import {
-  useDeleteSpace,
-  useUpdateSpace,
-} from "@/hooks/queries/client/use-spaces.mutation";
-import {
-  useSpaceById,
-  useSpaceListByIdUser,
-} from "@/hooks/queries/client/use-spaces.query";
-import { useSession } from "@/hooks/queries/use-session";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -27,9 +16,20 @@ import { EmojiPickerDialog } from "@workspace/ui/components/emoji-picker";
 import { H1 } from "@workspace/ui/components/typography";
 import { Trash } from "iconsax-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { useSpaceContext } from "@/app/(main)/contexts/space-context";
+import { ContentSpaceEditor } from "@/app/(main)/space/[id_space]/content-space-editor";
+import {
+  useDeleteSpace,
+  useUpdateSpace,
+} from "@/hooks/queries/client/use-spaces.mutation";
+import {
+  useSpaceById,
+  useSpaceListByIdUser,
+} from "@/hooks/queries/client/use-spaces.query";
+import { useSession } from "@/hooks/queries/use-session";
 
 export function UpdateSpaceForm({ idSpace }: { idSpace: string }) {
   const { data: space, isLoading } = useSpaceById(idSpace);
@@ -156,39 +156,37 @@ export function UpdateSpaceForm({ idSpace }: { idSpace: string }) {
   }
 
   return (
-    <div className="container max-w-2xl mx-auto py-8">
+    <div className="container mx-auto max-w-3xl py-8">
       <div className="flex items-center gap-2">
         <EmojiPickerDialog onEmojiSelect={handleUpdateEmoji}>
-          <Button variant="secondary" size="icon-lg">
-            <span
-              className="cursor-pointer hover:opacity-70 transition-opacity text-2xl"
-              aria-label="Change emoji"
-            >
+          <Button size="icon-lg" variant="secondary">
+            <span className="cursor-pointer text-2xl transition-opacity hover:opacity-70">
               {space.emoji}
             </span>
           </Button>
         </EmojiPickerDialog>
         <H1 className="w-full">
+          {/** biome-ignore lint/a11y/noStaticElementInteractions: <> */}
           <span
-            ref={titleRef}
+            className="px-1 outline-none"
             contentEditable="plaintext-only"
-            suppressContentEditableWarning={true}
             onBlur={handleTitleBlur}
             onInput={handleTitleChange}
             onKeyDown={handleKeyDown}
-            className="outline-none px-1"
+            ref={titleRef}
+            suppressContentEditableWarning={true}
           >
             {space.title}
           </span>
           {isPending && (
-            <span className="text-sm text-muted-foreground ml-2">
+            <span className="ml-2 text-muted-foreground text-sm">
               Saving...
             </span>
           )}
         </H1>
         <AlertDialog>
           <AlertDialogTrigger asChild={true}>
-            <Button variant="destructive" size="sm">
+            <Button size="sm" variant="destructive">
               <Trash color="currentColor" />
               Delete Space
             </Button>
@@ -204,9 +202,9 @@ export function UpdateSpaceForm({ idSpace }: { idSpace: string }) {
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction
-                onClick={handleDeleteSpace}
-                disabled={isDeleting}
                 className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                disabled={isDeleting}
+                onClick={handleDeleteSpace}
               >
                 {isDeleting ? "Deleting..." : "Delete Space"}
               </AlertDialogAction>

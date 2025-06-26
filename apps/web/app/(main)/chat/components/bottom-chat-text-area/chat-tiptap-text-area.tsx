@@ -11,8 +11,8 @@ export const ChatTiptapComponent = () => {
   return (
     <ScrollArea
       className={cn(
-        "*:max-h-[20dvh] w-full break-words z-20",
-        "tracking-tight text-foreground",
+        "z-20 w-full break-words *:max-h-[20dvh]",
+        "text-foreground tracking-tight",
       )}
       aria-label="Chat input area"
     >

@@ -1,9 +1,9 @@
 "use server";
-import { envClient } from "@/env/client";
 import { createServerClient } from "@workspace/supabase/server";
 import type { Provider } from "@workspace/supabase/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { envClient } from "@/env/client";
 
 const signInWithPassword = async (formData: FormData) => {
   const supabase = await createServerClient();

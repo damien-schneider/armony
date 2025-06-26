@@ -1,8 +1,5 @@
 "use client";
 
-import { useChatContext } from "@/app/(main)/contexts/chat-context";
-import { useCreateSnippet } from "@/hooks/queries/client/use-snippets.mutation";
-import { useSession } from "@/hooks/queries/use-session";
 import { Button } from "@workspace/ui/components/button";
 import {
   Dialog,
@@ -17,6 +14,9 @@ import { Label } from "@workspace/ui/components/label";
 import { useKeyPress } from "@workspace/ui/hooks/use-key-press";
 import { type FormEvent, type ReactNode, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useChatContext } from "@/app/(main)/contexts/chat-context";
+import { useCreateSnippet } from "@/hooks/queries/client/use-snippets.mutation";
+import { useSession } from "@/hooks/queries/use-session";
 
 interface AddSnippetDialogProps {
   children: ReactNode;
@@ -93,7 +93,7 @@ export default function AddSnippetDialog({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild={true}>{children}</DialogTrigger>
 
       <DialogContent>
@@ -106,18 +106,18 @@ export default function AddSnippetDialog({
             <div className="space-y-2">
               <Label htmlFor="title">Title*</Label>
               <Input
-                id="title"
-                value={title}
+                autoFocus={true}
+                id={`snippet-title-${idUser}`}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter a title for your snippet"
                 required={true}
-                autoFocus={true}
+                value={title}
               />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="content">Content</Label>
-              <div className="border rounded-md bg-background-2 p-3 max-h-48 overflow-y-auto">
+              <div className="max-h-48 overflow-y-auto rounded-md border bg-background-2 p-3">
                 <pre className="whitespace-pre-wrap text-sm">{content}</pre>
               </div>
             </div>
@@ -125,14 +125,14 @@ export default function AddSnippetDialog({
 
           <DialogFooter className="mt-6">
             <Button
+              disabled={isPending}
+              onClick={() => setIsOpen(false)}
               type="button"
               variant="outline"
-              onClick={() => setIsOpen(false)}
-              disabled={isPending}
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={isPending || !title.trim()}>
+            <Button disabled={isPending || !title.trim()} type="submit">
               {isPending ? "Creating..." : "Create Snippet"}
             </Button>
           </DialogFooter>

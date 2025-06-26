@@ -1,11 +1,11 @@
 "use client";
 
-import CreateSpaceDialog from "@/app/(main)/components/create-space-dialog";
-import { useSpaceContext } from "@/app/(main)/contexts/space-context";
 import { Button } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
 import { Add } from "iconsax-react";
 import { useRouter } from "next/navigation";
+import CreateSpaceDialog from "@/app/(main)/components/create-space-dialog";
+import { useSpaceContext } from "@/app/(main)/contexts/space-context";
 
 interface Space {
   id: string;
@@ -28,19 +28,19 @@ export function SpaceSelection({ spaces }: SpaceSelectionProps) {
 
   return (
     <div className="flex flex-col items-center gap-8">
-      <div className="flex flex-wrap justify-center gap-8 w-full max-w-2xl">
+      <div className="flex w-full max-w-3xl flex-wrap justify-center gap-8">
         {spaces.map((space) => (
           <button
             key={space.id}
             type="button"
             className={cn(
-              "group flex items-center gap-4 px-4 py-3 rounded-lg transition-colors",
+              "group flex items-center gap-4 rounded-lg px-4 py-3 transition-colors",
               activeIdSpace === space.id ? "bg-primary/10" : "hover:bg-accent",
             )}
             onClick={() => handleSpaceSelect(space.id)}
           >
             <span className="text-2xl">{space.emoji}</span>
-            <span className="text-lg font-medium text-foreground">
+            <span className="font-medium text-foreground text-lg">
               {space.title}
             </span>
           </button>

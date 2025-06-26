@@ -43,7 +43,7 @@ export function ListSelectedImages({
             opacity: { duration: 0.1 },
           },
         }}
-        className="relative border-b overflow-hidden"
+        className="relative overflow-hidden border-b"
       >
         <motion.div
           className="flex flex-wrap gap-2 p-2"
@@ -75,7 +75,7 @@ export function ListSelectedImages({
                   duration: 0.15,
                 },
               }}
-              className="relative w-24 h-24 rounded-lg overflow-hidden group"
+              className="group relative h-24 w-24 overflow-hidden rounded-lg"
             >
               <Image
                 src={image.preview}
@@ -87,7 +87,7 @@ export function ListSelectedImages({
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute -top-1 -right-1 bg-background/80 hover:bg-background/90 rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="-top-1 -right-1 absolute rounded-full bg-background/80 p-0.5 opacity-0 transition-opacity hover:bg-background/90 group-hover:opacity-100"
                 onClick={() => onRemove(index)}
               >
                 <CloseCircle

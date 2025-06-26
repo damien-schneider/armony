@@ -1,19 +1,13 @@
 "use client";
-import { keyChat } from "@/lib/query-key-factory";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createClient } from "@workspace/supabase/client";
+import { keyChat } from "@/lib/query-key-factory";
 
 export const useUpdateChat = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({
-      id,
-      title,
-    }: {
-      id: string;
-      title: string;
-    }) => {
+    mutationFn: async ({ id, title }: { id: string; title: string }) => {
       const supabase = createClient();
 
       const { data } = await supabase

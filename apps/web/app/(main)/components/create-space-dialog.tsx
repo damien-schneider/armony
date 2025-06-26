@@ -1,10 +1,5 @@
 "use client";
 
-import { useSpaceContext } from "@/app/(main)/contexts/space-context";
-import { useCreateSpace } from "@/hooks/queries/client/use-spaces.mutation";
-import { useSpaceListByIdUser } from "@/hooks/queries/client/use-spaces.query";
-import { useSession } from "@/hooks/queries/use-session";
-import { MAX_SPACES_LIMIT } from "@/lib/limits.const";
 import { Button } from "@workspace/ui/components/button";
 import {
   Dialog,
@@ -17,12 +12,19 @@ import {
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
 import { useRouter } from "next/navigation";
-import { type FormEvent, type ReactNode, useState } from "react";
+import { type FormEvent, type ReactNode, useId, useState } from "react";
 import { toast } from "sonner";
+import { useSpaceContext } from "@/app/(main)/contexts/space-context";
+import { useCreateSpace } from "@/hooks/queries/client/use-spaces.mutation";
+import { useSpaceListByIdUser } from "@/hooks/queries/client/use-spaces.query";
+import { useSession } from "@/hooks/queries/use-session";
+import { MAX_SPACES_LIMIT } from "@/lib/limits.const";
 
 export default function CreateSpaceDialog({
   children,
-}: { children: ReactNode }) {
+}: {
+  children: ReactNode;
+}) {
   const { idUser } = useSession();
   const { data: spaceList, isPending } = useSpaceListByIdUser(idUser);
   const router = useRouter();
@@ -30,7 +32,7 @@ export default function CreateSpaceDialog({
   const [title, setTitle] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const { mutate } = useCreateSpace();
-
+  const uniqueId = useId();
   const { changeSpaceById } = useSpaceContext();
 
   const handleSubmit = async (e: FormEvent) => {
@@ -77,7 +79,7 @@ export default function CreateSpaceDialog({
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild={true}>{children}</DialogTrigger>
 
       <DialogContent>
@@ -89,29 +91,29 @@ export default function CreateSpaceDialog({
           <div className="space-y-2">
             <Label htmlFor="name">Space Name*</Label>
             <Input
-              id="name"
-              value={title}
+              id={`name_${uniqueId}`}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter space name"
               required={true}
+              value={title}
             />
           </div>
 
           {doesSpaceTitleExist(title) && (
-            <div className="text-red-500 text-sm mt-4 mb-2 text-right">
+            <div className="mt-4 mb-2 text-right text-red-500 text-sm">
               Space name already exists
             </div>
           )}
 
           <DialogFooter>
             <Button
-              type="submit"
               disabled={
                 isPending ||
                 !title.trim() ||
                 doesSpaceTitleExist(title) ||
                 isSpaceLimitReached()
               }
+              type="submit"
             >
               {isPending ? "Creating..." : "Create Space"}
             </Button>
