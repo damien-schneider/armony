@@ -1,10 +1,10 @@
 "use client";
 
-import { MemoizedMarkdown } from "@/app/(main)/chat/components/memoized-markdown/memoized-markdown";
 import { cn } from "@workspace/ui/lib/utils";
 import { ArrowDown2 } from "iconsax-react";
-import { AnimatePresence, type Variants, motion } from "motion/react";
+import { AnimatePresence, motion, type Variants } from "motion/react";
 import { useEffect, useState } from "react";
+import { MemoizedMarkdown } from "@/app/(main)/chat/components/memoized-markdown/memoized-markdown";
 
 // Types copied from the original "ai" package (because not exported)
 type ReasoningUIPart = {
@@ -53,24 +53,24 @@ export function ReasoningMessagePart({
   }, [isReasoning]);
 
   return (
-    <div className="flex flex-col gap-2 mt-2">
+    <div className="mt-2 flex flex-col gap-2">
       {isReasoning ? (
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium">Reasoning</span>
+          <span className="font-medium text-sm">Reasoning</span>
           {/* <Spinner /> */}
         </div>
       ) : (
         <button
           type="button"
           className={cn(
-            "w-fit mt-2 inline-flex items-center gap-2 cursor-pointer transition",
+            "mt-2 inline-flex w-fit cursor-pointer items-center gap-2 transition",
             isExpanded
               ? "text-foreground"
               : "text-muted-foreground hover:text-foreground",
           )}
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          <span className="text-sm font-medium">
+          <span className="font-medium text-sm">
             Reasoned for a few seconds
           </span>
           <ArrowDown2
@@ -84,14 +84,14 @@ export function ReasoningMessagePart({
         {isExpanded && (
           <motion.div
             key="reasoning"
-            className="text-sm text-muted-foreground relative pl-3 overflow-y-hidden"
+            className="relative overflow-y-hidden pl-3 text-muted-foreground text-sm"
             initial="collapsed"
             animate="expanded"
             exit="collapsed"
             variants={variants}
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
-            <div className="absolute left-0 inset-y-3 w-0.5 min-h-1 inline-block rounded-full bg-border" />
+            <div className="absolute inset-y-3 left-0 inline-block min-h-1 w-0.5 rounded-full bg-border" />
 
             {/* {part.details.map((detail, detailIndex) =>
               detail.type === "text" ? (

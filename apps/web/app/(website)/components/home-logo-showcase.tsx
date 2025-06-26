@@ -1,11 +1,11 @@
+import { cn } from "@workspace/ui/lib/utils";
+import type { CSSProperties, ReactNode } from "react";
 import {
   providerDetailsList,
   type providersList,
 } from "@/app/api/chat/lib/ai-models-client.lib";
 import { LogoArmony } from "@/components/logo-armony";
 import { IconAiProvider } from "@/lib/provider-icons";
-import { cn } from "@workspace/ui/lib/utils";
-import type { CSSProperties, ReactNode } from "react";
 import "./homelogo-showcase.css";
 
 export function LogoShowcase({ className }: { className?: string }) {
@@ -17,7 +17,7 @@ export function LogoShowcase({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative w-full h-[596px] font-sans text-xs overflow-hidden",
+        "relative h-[596px] w-full overflow-hidden font-sans text-xs",
         className,
       )}
     >
@@ -28,22 +28,22 @@ export function LogoShowcase({ className }: { className?: string }) {
       <Circle className="inset-shadow-accent/100 inset-shadow-sm size-[150px]" />
 
       {/* Center logo container */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 z-[4]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 z-[4] h-28 w-28">
         {/* Radial gradients for the glow effect */}
         <RadialGradient
-          className="left-[-94px] top-[-94px]"
+          className="top-[-94px] left-[-94px]"
           color="rgba(227,148,0,0.25)"
         />
         <RadialGradient
-          className="right-[-94px] top-[-105px]"
+          className="top-[-105px] right-[-94px]"
           color="rgba(0,151,254,0.25)"
         />
         <RadialGradient
-          className="bottom-[-72px] right-[-102px] top-[-16px]"
+          className="top-[-16px] right-[-102px] bottom-[-72px]"
           color="rgba(0,173,9,0.25)"
         />
         <RadialGradient
-          className="bottom-[-100px] left-0 right-[-88px]"
+          className="right-[-88px] bottom-[-100px] left-0"
           color="rgba(243,71,255,0.25)"
         />
         <RadialGradient
@@ -55,27 +55,27 @@ export function LogoShowcase({ className }: { className?: string }) {
           color="rgba(255,71,71,0.25)"
         />
         <RadialGradient
-          className="bottom-[-51px] left-[-100px] top-[-37px]"
+          className="top-[-37px] bottom-[-51px] left-[-100px]"
           color="rgba(71,114,255,0.25)"
         />
 
         {/* Center logo */}
-        <div className="relative w-full h-full backdrop-blur-md bg-background/50 z-20 shadow-lg rounded-3xl p-2">
-          <div className="relative bg-background/50 rounded-2xl flex items-center size-full justify-center">
-            <LogoArmony className="size-20 z-50" size="sm" />
+        <div className="relative z-20 h-full w-full rounded-3xl bg-background/50 p-2 shadow-lg backdrop-blur-md">
+          <div className="relative flex size-full items-center justify-center rounded-2xl bg-background/50">
+            <LogoArmony className="z-50 size-20" size="sm" />
           </div>
         </div>
       </div>
 
       {/* Rotating providers */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-50 centered-rotating">
+      <div className="-translate-x-1/2 -translate-y-1/2 centered-rotating absolute top-1/2 left-1/2 size-50">
         {providerKeys.map((provider, index) => {
           const angle = (index * 360) / providerKeys.length;
           const adjustedAngle = angle - 90; // <-- adjust start to be from top
           return (
             <div
               key={provider}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2"
             >
               <div
                 style={{
@@ -99,14 +99,17 @@ export function LogoShowcase({ className }: { className?: string }) {
 const ProviderIcon = ({
   provider,
   className,
-}: { provider: (typeof providersList)[number]; className?: string }) => (
+}: {
+  provider: (typeof providersList)[number];
+  className?: string;
+}) => (
   <div
     className={cn(
-      "flex items-center justify-center aspect-square size-16 relative backdrop-blur-sm bg-accent/40 shadow-lg rounded-2xl p-0.5",
+      "relative flex aspect-square size-16 items-center justify-center rounded-2xl bg-accent/40 p-0.5 shadow-lg backdrop-blur-sm",
       className,
     )}
   >
-    <div className="flex items-center justify-center bg-background size-14 relative overflow-hidden rounded-xl">
+    <div className="relative flex size-14 items-center justify-center overflow-hidden rounded-xl bg-background">
       <IconAiProvider
         provider={provider}
         width={24}
@@ -131,7 +134,7 @@ const RadialGradient = ({
   color: string;
 }) => (
   <div
-    className={`absolute w-[200px] h-[200px] z-1 bg-[radial-gradient(50%_50%_at_50%_50%,${color}_0%,rgba(227,148,0,0)_100%)] ${className}`}
+    className={`absolute z-1 h-[200px] w-[200px] bg-[radial-gradient(50%_50%_at_50%_50%,${color}_0%,rgba(227,148,0,0)_100%)] ${className}`}
   />
 );
 
@@ -144,7 +147,7 @@ const Circle = ({
 }) => (
   <div
     className={cn(
-      "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full",
+      "-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 rounded-full",
       className,
     )}
   >

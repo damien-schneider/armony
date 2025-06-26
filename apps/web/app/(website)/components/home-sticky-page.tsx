@@ -21,31 +21,31 @@ export function StickyPage({
   return (
     <div
       className={cn(
-        "group sticky top-0 h-dvh overflow-hidden even:bg-background odd:bg-foreground even:text-foreground odd:text-background",
+        "group sticky top-0 h-dvh overflow-hidden odd:bg-foreground odd:text-background even:bg-background even:text-foreground",
         // Padding top to avoid content being cut off by the navbar
         "pt-20",
       )}
     >
-      <div className="max-w-7xl w-full h-full grid grid-cols-1 md:grid-cols-2 place-items-start place-content-start gap-6 md:gap-16 rounded-lg p-6">
-        <p className="text-[10rem] md:text-[15rem] font-bold leading-[100%]">
+      <div className="grid h-full w-full max-w-7xl grid-cols-1 place-content-start place-items-start gap-6 rounded-lg p-6 md:grid-cols-2 md:gap-16">
+        <p className="font-bold text-[10rem] leading-[100%] md:text-[15rem]">
           {number}
         </p>
 
         <div className="space-y-8 text-start">
           <div className="pt-10">
-            <H2 className="mb-6 group-even:text-foreground group-odd:text-background">
+            <H2 className="mb-6 group-odd:text-background group-even:text-foreground">
               {title}
             </H2>
             <P
               variant="body-xl"
-              className="max-w-xl group-even:text-foreground/65 group-odd:text-background/65"
+              className="max-w-xl group-odd:text-background/65 group-even:text-foreground/65"
             >
               {description}
             </P>
           </div>
 
           {image && (
-            <div className="relative w-full max-w-xl rounded-xl overflow-hidden border border-neutral-400/20">
+            <div className="relative w-full max-w-xl overflow-hidden rounded-xl border border-neutral-400/20">
               <Image
                 src={image}
                 alt={title}

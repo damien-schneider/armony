@@ -1,8 +1,8 @@
 "use client";
-import { keyEmpty, keySpace } from "@/lib/query-key-factory";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@workspace/supabase/client";
 import type { Tables } from "@workspace/supabase/types/database";
+import { keyEmpty, keySpace } from "@/lib/query-key-factory";
 
 export const useSpaceById = (idSpace: string) => {
   return useQuery({

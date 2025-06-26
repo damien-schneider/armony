@@ -17,7 +17,6 @@ export async function createServerClient() {
         },
         setAll(cookiesToSet) {
           try {
-            // biome-ignore lint/complexity/noForEach: <Same as supabase documentation>
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options),
             );

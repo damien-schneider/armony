@@ -1,7 +1,7 @@
 "use client";
-import { localStorageKeys } from "@/lib/local-storage-keys";
 import { useLocalStorageState } from "@workspace/ui/hooks/use-local-storage";
 import { useMediaQuery } from "usehooks-ts";
+import { localStorageKeys } from "@/lib/local-storage-keys";
 
 export const useSidebarOpening = () => {
   const isDesktopView = useMediaQuery("(min-width: 768px)");

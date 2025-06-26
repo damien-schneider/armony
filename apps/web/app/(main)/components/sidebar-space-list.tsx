@@ -1,7 +1,4 @@
 "use client";
-import { useSpaceContext } from "@/app/(main)/contexts/space-context";
-import { useSpaceListByIdUser } from "@/hooks/queries/client/use-spaces.query";
-import { useSession } from "@/hooks/queries/use-session";
 import {
   Tooltip,
   TooltipContent,
@@ -10,6 +7,9 @@ import {
 } from "@workspace/ui/components/tooltip";
 import { cn } from "@workspace/ui/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
+import { useSpaceContext } from "@/app/(main)/contexts/space-context";
+import { useSpaceListByIdUser } from "@/hooks/queries/client/use-spaces.query";
+import { useSession } from "@/hooks/queries/use-session";
 export default function SidebarSpaceList() {
   const router = useRouter();
   const pathname = usePathname();
@@ -38,7 +38,7 @@ export default function SidebarSpaceList() {
                 <button
                   type="button"
                   className={cn(
-                    "cursor-pointer size-8 rounded-full inline-flex items-center justify-center",
+                    "inline-flex size-8 cursor-pointer items-center justify-center rounded-full",
                     isSpaceActive
                       ? ""
                       : "saturate-0 hover:bg-secondary hover:text-secondary-foreground",
@@ -48,7 +48,7 @@ export default function SidebarSpaceList() {
                   <span
                     className={cn(
                       isSpaceActive
-                        ? "text-primary bg-primary/10 rounded-md size-7 inline-flex items-center justify-center"
+                        ? "inline-flex size-7 items-center justify-center rounded-md bg-primary/10 text-primary"
                         : "",
                     )}
                   >

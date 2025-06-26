@@ -1,9 +1,9 @@
+import { createServerClient } from "@workspace/supabase/server";
+import type { LanguageModelUsage, StepResult, ToolSet } from "ai";
 import type { ModelDefinition } from "@/app/api/chat/ai-models.type";
 import { computeTokenCosts } from "@/app/api/chat/lib/models-prices.lib";
 import { estimateTextTokens } from "@/app/api/chat/token-estimation";
 import { getSubscriptionByUser } from "@/utils/subscription/get-subscription";
-import { createServerClient } from "@workspace/supabase/server";
-import type { LanguageModelUsage, StepResult, ToolSet } from "ai";
 
 export async function getLast3daysAiCalls({ idUser }: { idUser: string }) {
   const supabase = await createServerClient();
@@ -32,7 +32,9 @@ export async function getLast3daysAiCalls({ idUser }: { idUser: string }) {
 
 export const checkUserSubscriptionQuotas = async ({
   idUser,
-}: { idUser: string }) => {
+}: {
+  idUser: string;
+}) => {
   const { status } = await getSubscriptionByUser(idUser);
 
   if (status !== "active" && status !== "trialing") {

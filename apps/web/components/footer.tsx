@@ -1,24 +1,23 @@
+import Link from "next/link";
 import { LogoArmony } from "@/components/logo-armony";
 import { envClient } from "@/env/client";
-
-import Link from "next/link";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-border mt-16 pb-12">
-      <div className="container max-w-7xl mx-auto py-12 px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="mt-16 w-full border-border border-t pb-12">
+      <div className="container mx-auto max-w-7xl px-4 py-12 md:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {/* Logo and description column */}
-          <div className="md:col-span-2 space-y-6">
+          <div className="space-y-6 md:col-span-2">
             <Link
               href={envClient.NEXT_PUBLIC_BASE_URL}
               className="inline-block"
             >
               <LogoArmony size="lg" />
             </Link>
-            <p className="text-muted-foreground max-w-sm">
+            <p className="max-w-sm text-muted-foreground">
               Access the latest AI technologies instantly. Remove workflow
               friction and boost productivity with our innovative AI platform.
             </p>
@@ -127,12 +126,12 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-medium text-lg mb-4">Product</h3>
+            <h3 className="mb-4 font-medium text-lg">Product</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/pricing"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Pricing
                 </Link>
@@ -148,7 +147,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href="/changelog"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Changelog
                 </Link>
@@ -156,7 +155,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href="/roadmap"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Roadmap
                 </Link>
@@ -164,7 +163,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href="/feedbacks"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Feedbacks
                 </Link>
@@ -173,12 +172,12 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-4">Account</h3>
+            <h3 className="mb-4 font-medium text-lg">Account</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/signup"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Sign Up
                 </Link>
@@ -186,7 +185,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href="/signin"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Sign In
                 </Link>
@@ -196,21 +195,21 @@ export const Footer = () => {
         </div>
 
         {/* Bottom section with copyright and links */}
-        <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-border border-t pt-8 md:flex-row">
+          <p className="text-muted-foreground text-sm">
             © {currentYear} Armony. All rights reserved.
           </p>
 
           <div className="flex flex-wrap gap-6">
             <Link
               href="/terms-of-use"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground text-sm transition-colors hover:text-foreground"
             >
               Terms and Conditions
             </Link>
             <Link
               href="/privacy-policy"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground text-sm transition-colors hover:text-foreground"
             >
               Privacy Policy
             </Link>
@@ -222,7 +221,7 @@ export const Footer = () => {
             </Link> */}
             <Link
               href="mailto:damien.schneider01@gmail.com?subject=Contact%20from%20armony.ai"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground text-sm transition-colors hover:text-foreground"
             >
               Contact
             </Link>

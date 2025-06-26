@@ -1,10 +1,16 @@
 "use client";
-import { useChatContext } from "@/app/(main)/contexts/chat-context";
 import Placeholder from "@tiptap/extension-placeholder";
 import type { Editor } from "@tiptap/react";
 import { useEditor } from "@tiptap/react";
+import { useChatContext } from "@/app/(main)/contexts/chat-context";
 import "./text-area-content-editable.css";
 
+import Document from "@tiptap/extension-document";
+import HardBreak from "@tiptap/extension-hard-break";
+import Paragraph from "@tiptap/extension-paragraph";
+import Text from "@tiptap/extension-text";
+import type { KeyboardEvent as ReactKeyboardEvent } from "react";
+import { useEffect } from "react";
 import {
   type CommandMenuState,
   SnippetsExtension,
@@ -18,12 +24,6 @@ import {
 } from "@/app/(main)/chat/components/bottom-chat-text-area/tiptap-utils";
 import { useSharedAiChat } from "@/app/(main)/contexts/ai-sdk-chat-context";
 import { useSnippetsContext } from "@/app/(main)/contexts/snippets-context";
-import Document from "@tiptap/extension-document";
-import HardBreak from "@tiptap/extension-hard-break";
-import Paragraph from "@tiptap/extension-paragraph";
-import Text from "@tiptap/extension-text";
-import type { KeyboardEvent as ReactKeyboardEvent } from "react";
-import { useEffect } from "react";
 
 export const useChatTiptapEditor = () => {
   const { inputValue, setInputValue } = useChatContext();

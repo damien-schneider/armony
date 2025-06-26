@@ -13,7 +13,7 @@ export function HomeHeroSection() {
       {/* Beta Badge */}
       <div className=" px-6 lg:px-8">
         {/* Hero Content */}
-        <div className="max-w-6xl mx-auto">
+        <div className="mx-auto max-w-6xl">
           <Badge variant="amber">Beta</Badge>
           <H1>
             A Single Subscription.
@@ -33,9 +33,9 @@ export function HomeHeroSection() {
             </Button>
           </div>
         </div>
-        <div className="relative w-full mx-auto max-w-screen-2xl">
+        <div className="relative mx-auto w-full max-w-screen-2xl">
           <video
-            className="w-full object-cover rounded-2xl md:rounded-3xl aspect-auto border mt-10 relative z-20"
+            className="relative z-20 mt-10 aspect-auto w-full rounded-2xl border object-cover md:rounded-3xl"
             autoPlay={true}
             loop={true}
             muted={true}
@@ -45,7 +45,7 @@ export function HomeHeroSection() {
             Your browser does not support the video tag.
           </video>
           <video
-            className="absolute w-full top-0 left-0 blur-2xl object-cover aspect-auto border mt-10 scale-105 z-10 opacity-30"
+            className="absolute top-0 left-0 z-10 mt-10 aspect-auto w-full scale-105 border object-cover opacity-30 blur-2xl"
             autoPlay={true}
             loop={true}
             muted={true}

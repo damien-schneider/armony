@@ -31,7 +31,7 @@ export const ShinyText = ({
       </style>
       <p
         className={cn(
-          "text-white/70 bg-clip-text inline-block",
+          "inline-block bg-clip-text text-white/70",
           disabled ? "" : "animate-shine",
           className,
         )}

@@ -1,7 +1,7 @@
 "use client";
-import { keySpace } from "@/lib/query-key-factory";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createClient } from "@workspace/supabase/client";
+import { keySpace } from "@/lib/query-key-factory";
 
 export const useCreateSpace = () => {
   const queryClient = useQueryClient();
@@ -11,7 +11,11 @@ export const useCreateSpace = () => {
       title,
       emoji,
       idUser,
-    }: { title: string; emoji: string; idUser: string }) => {
+    }: {
+      title: string;
+      emoji: string;
+      idUser: string;
+    }) => {
       const supabase = createClient();
 
       const { data } = await supabase

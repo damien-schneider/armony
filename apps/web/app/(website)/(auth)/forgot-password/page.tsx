@@ -1,14 +1,8 @@
 "use client";
-import { createClient } from "@workspace/supabase/client";
-import { Button } from "@workspace/ui/components/button";
-import { Input } from "@workspace/ui/components/input";
-
-// import { sendPasswordResetEmail } from "@/ui/auth/actions";
-import { H1, P } from "@workspace/ui/components/typography";
-import Link from "next/link";
-import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createClient } from "@workspace/supabase/client";
+import { Button } from "@workspace/ui/components/button";
 import {
   Form,
   FormControl,
@@ -17,6 +11,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@workspace/ui/components/form";
+import { Input } from "@workspace/ui/components/input";
+// import { sendPasswordResetEmail } from "@/ui/auth/actions";
+import { H1, P } from "@workspace/ui/components/typography";
+import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -91,7 +90,7 @@ export default function ForgotPasswordPage() {
   return (
     <>
       {/* <form action={sendPasswordResetEmail}> */}
-      <div className="text-center my-8">
+      <div className="my-8 text-center">
         <H1>Forgot Password</H1>
         <P className="mt-2">
           We will send a password reset link to your email address if there is

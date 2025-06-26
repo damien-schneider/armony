@@ -14,13 +14,14 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.0.5",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.29.0",
     "husky": "^9.1.7",
     "turbo": "^2.5.4",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "ultracite": "5.0.20"
   },
   "packageManager": "pnpm@9.12.3",
   "engines": {

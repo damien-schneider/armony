@@ -29,7 +29,7 @@ export default function GlobalError({ error, reset }: ErrorProps) {
     <div className="flex items-center justify-center p-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="space-y-1 text-center">
-          <div className="flex justify-center mb-2">
+          <div className="mb-2 flex justify-center">
             <Warning2
               color="currentColor"
               size={42}
@@ -41,12 +41,12 @@ export default function GlobalError({ error, reset }: ErrorProps) {
             {error.message || "We've encountered an unexpected error"}
           </CardDescription>
           {error.digest && (
-            <div className="mt-2 rounded-md bg-muted p-2 text-xs font-mono">
+            <div className="mt-2 rounded-md bg-muted p-2 font-mono text-xs">
               Error digest: {error.digest}
             </div>
           )}
         </CardHeader>
-        <CardContent className="text-center text-sm text-muted-foreground">
+        <CardContent className="text-center text-muted-foreground text-sm">
           <p>
             Please try again or return to the home page. If the problem
             persists, contact our support team.

@@ -1,15 +1,14 @@
 "use client";
 
-import SuspendedPostHogPageView from "@/components/posthog-page-view";
-import { envClient } from "@/env/client";
-import { usePosthogUserIdentification } from "@/hooks/use-posthog-identification";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
-import { useEffect } from "react";
 import type { ReactNode } from "react";
+import { useEffect } from "react";
+import SuspendedPostHogPageView from "@/components/posthog-page-view";
+import { envClient } from "@/env/client";
+import { usePosthogUserIdentification } from "@/hooks/use-posthog-identification";
 
 export function Providers({ children }: { children: ReactNode }) {
   const queryClient = new QueryClient();
@@ -32,11 +31,7 @@ export function Providers({ children }: { children: ReactNode }) {
   );
 }
 
-const PosthogProviderWrapper = ({
-  children,
-}: {
-  children: ReactNode;
-}) => {
+const PosthogProviderWrapper = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (envClient.NEXT_PUBLIC_NODE_ENV !== "production") {
       // Disable PostHog in development mode

@@ -1,5 +1,5 @@
-import { envClient } from "@/env/client";
 import type { Tables } from "@workspace/supabase/types/database";
+import { envClient } from "@/env/client";
 
 type Price = Tables<"prices">;
 

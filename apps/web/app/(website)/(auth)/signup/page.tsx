@@ -1,7 +1,4 @@
 "use client";
-import { signUpWithPassword } from "@/app/auth/actions";
-import { OrSeparator } from "@/app/auth/components/or-separator";
-import { OAuthButton } from "@/app/auth/components/provider-button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@workspace/ui/components/button";
 import {
@@ -18,6 +15,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { signUpWithPassword } from "@/app/auth/actions";
+import { OrSeparator } from "@/app/auth/components/or-separator";
+import { OAuthButton } from "@/app/auth/components/provider-button";
 
 const signUpSchema = z
   .object({
@@ -63,13 +63,13 @@ export default function SignUpPage() {
     <>
       <div className="my-8 text-center">
         <H1>Create account</H1>
-        <p className="text-sm mt-2 text-foreground">
+        <p className="mt-2 text-foreground text-sm">
           Sign Up to Armony to experience the tool completely.
         </p>
       </div>
 
       <div className="flex flex-col gap-6">
-        <div className="grid gap-4 w-full">
+        <div className="grid w-full gap-4">
           {/* <OAuthButton provider="notion">Sign Up with</OAuthButton> */}
           <OAuthButton provider="google">Sign Up with</OAuthButton>
         </div>
@@ -79,7 +79,7 @@ export default function SignUpPage() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {errorMessage && (
-              <P className="text-red-500 text-sm text-center">{errorMessage}</P>
+              <P className="text-center text-red-500 text-sm">{errorMessage}</P>
             )}
 
             <FormField
@@ -138,7 +138,7 @@ export default function SignUpPage() {
 
             <Button
               type="submit"
-              className="w-full mt-8"
+              className="mt-8 w-full"
               variant="default"
               disabled={loading}
             >
@@ -148,7 +148,7 @@ export default function SignUpPage() {
         </Form>
       </div>
 
-      <P variant="caption" className="text-balance text-center w-full mt-4">
+      <P variant="caption" className="mt-4 w-full text-balance text-center">
         By joining, you agree to our{" "}
         <Link href="/terms-of-use" className="link-secondary">
           Terms of use
@@ -159,7 +159,7 @@ export default function SignUpPage() {
         </Link>
         .
       </P>
-      <P className="text-center mt-2">
+      <P className="mt-2 text-center">
         Already have an account?{" "}
         <Link href="/signin" className="link-primary">
           Log in

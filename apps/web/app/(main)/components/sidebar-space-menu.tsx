@@ -1,11 +1,5 @@
 "use client";
 
-import CreateSpaceDialog from "@/app/(main)/components/create-space-dialog";
-import SidebarSpaceList from "@/app/(main)/components/sidebar-space-list";
-import { useSpaceContext } from "@/app/(main)/contexts/space-context";
-import { useSpaceListByIdUser } from "@/hooks/queries/client/use-spaces.query";
-import { useSession } from "@/hooks/queries/use-session";
-import { MAX_SPACES_LIMIT } from "@/lib/limits.const";
 import { Button } from "@workspace/ui/components/button";
 import { Separator } from "@workspace/ui/components/separator";
 import {
@@ -19,6 +13,12 @@ import { cn } from "@workspace/ui/lib/utils";
 import { Add, Setting } from "iconsax-react";
 import Link from "next/link";
 import { useIsClient } from "usehooks-ts";
+import CreateSpaceDialog from "@/app/(main)/components/create-space-dialog";
+import SidebarSpaceList from "@/app/(main)/components/sidebar-space-list";
+import { useSpaceContext } from "@/app/(main)/contexts/space-context";
+import { useSpaceListByIdUser } from "@/hooks/queries/client/use-spaces.query";
+import { useSession } from "@/hooks/queries/use-session";
+import { MAX_SPACES_LIMIT } from "@/lib/limits.const";
 
 export default function SidebarSpaceMenu() {
   const { idUser } = useSession();
@@ -32,23 +32,23 @@ export default function SidebarSpaceMenu() {
   }
 
   return (
-    <div className="relative transition-all min-h-22.5 h-22.5 md:min-h-11 md:h-11 md:hover:min-h-22.5 md:hover:h-22.5 pointer-events-none">
+    <div className="pointer-events-none relative h-22.5 min-h-22.5 transition-all md:h-11 md:min-h-11 md:hover:h-22.5 md:hover:min-h-22.5">
       <div
         className={cn(
-          "absolute bottom-0 left-0 right-0 flex flex-col bg-background-2 border rounded-xl pt-3 -z-10 mx-auto rounded-t-none w-[calc(100%-1rem)]  pointer-events-auto",
+          "-z-10 pointer-events-auto absolute right-0 bottom-0 left-0 mx-auto flex w-[calc(100%-1rem)] flex-col rounded-xl rounded-t-none border bg-background-2 pt-3",
         )}
       >
         {/* Header showing active space - Upper Part */}
-        <div className="flex items-center justify-between p-1 h-11">
-          <div className="flex items-center gap-2 w-full">
+        <div className="flex h-11 items-center justify-between p-1">
+          <div className="flex w-full items-center gap-2">
             {activeSpace && (
-              <div className="flex-shrink-0 flex items-center justify-center size-8 rounded-lg bg-primary/10 text-primary">
+              <div className="flex size-8 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 {/* TODO: Emoji should never be null */}
                 {activeSpace.emoji}
               </div>
             )}
             {activeSpace ? (
-              <P className="font-medium truncate">
+              <P className="truncate font-medium">
                 {/* TODO: Title should never be null */}
                 {activeSpace.title}
               </P>
@@ -57,7 +57,7 @@ export default function SidebarSpaceMenu() {
               <CreateSpaceDialog>
                 <Button
                   variant="ghost-2"
-                  className="justify-center w-full rounded-b-lg rounded-t-sm"
+                  className="w-full justify-center rounded-t-sm rounded-b-lg"
                 >
                   <Add color="currentColor" className="size-4" />
                   Create Space

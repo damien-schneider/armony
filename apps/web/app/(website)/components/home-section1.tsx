@@ -1,10 +1,10 @@
-import { LogoShowcase } from "@/app/(website)/components/home-logo-showcase";
 import { Badge } from "@workspace/ui/components/badge";
 import { H2, P } from "@workspace/ui/components/typography";
+import { LogoShowcase } from "@/app/(website)/components/home-logo-showcase";
 
 export function HomeSection1() {
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="mx-auto max-w-4xl">
       <Badge>Remove friction from your workflow</Badge>
       <H2 className="mt-4">A Single Subscription. Unlimited AI Power.</H2>
       <P variant="caption-lg" className="mt-4 max-w-xl">

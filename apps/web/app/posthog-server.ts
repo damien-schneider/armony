@@ -1,7 +1,7 @@
-import { envClient } from "@/env/client";
 import { PostHog } from "posthog-node";
+import { envClient } from "@/env/client";
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: <>
 let posthogInstance: any = null;
 
 export function getPostHogServer() {

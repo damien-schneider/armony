@@ -3,11 +3,11 @@
 import { cn } from "@workspace/ui/lib/utils";
 import {
   AnimatePresence,
+  motion,
   type TargetAndTransition,
   type Transition,
   type Variant,
   type Variants,
-  motion,
 } from "motion/react";
 import React from "react";
 

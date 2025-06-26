@@ -1,8 +1,5 @@
 "use client";
 
-import { useChatTiptapContext } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-context";
-import { SnippetsMenuCommandItem } from "@/app/(main)/chat/components/snippets/snippets-menu-command-item";
-import { useSnippetsContext } from "@/app/(main)/contexts/snippets-context";
 import { Button } from "@workspace/ui/components/button";
 import {
   Command,
@@ -14,6 +11,9 @@ import {
 import { P } from "@workspace/ui/components/typography";
 import { ArrowDown3, ArrowUp3 } from "iconsax-react";
 import { useEffect, useRef } from "react";
+import { useChatTiptapContext } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-context";
+import { SnippetsMenuCommandItem } from "@/app/(main)/chat/components/snippets/snippets-menu-command-item";
+import { useSnippetsContext } from "@/app/(main)/contexts/snippets-context";
 
 export function SnippetsMenu() {
   const { editor } = useChatTiptapContext();
@@ -62,7 +62,7 @@ export function SnippetsMenu() {
           }
           setCommandValue(value);
         }}
-        className="absolute bottom-full mb-2 w-full rounded-xl border-border/40 border min-h-16 max-h-[20dvh] h-fit bg-popover px-1 text-popover-foreground shadow-xs z-10"
+        className="absolute bottom-full z-10 mb-2 h-fit max-h-[20dvh] min-h-16 w-full rounded-xl border border-border/40 bg-popover px-1 text-popover-foreground shadow-xs"
       >
         <CommandList ref={commandListRef}>
           <CommandEmpty>
@@ -86,14 +86,14 @@ export function SnippetsMenu() {
           {prefix === "@" && (
             <CommandGroup heading="Mentions">
               <CommandItem value="coming-soon" onSelect={() => closeMenu()}>
-                <span className="italic text-muted-foreground">
+                <span className="text-muted-foreground italic">
                   Mentions will be implemented soon
                 </span>
               </CommandItem>
             </CommandGroup>
           )}
         </CommandList>
-        <div className="flex items-center justify-end pb-1 px-2 text-sm text-muted-foreground">
+        <div className="flex items-center justify-end px-2 pb-1 text-muted-foreground text-sm">
           <div className="flex items-center gap-0.5">
             <P variant="caption">Use arrow keys to navigate</P>
             <Button

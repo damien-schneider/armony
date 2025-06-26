@@ -1,9 +1,11 @@
-import Chat from "@/app/(main)/chat/chat";
 import { createServerClient } from "@workspace/supabase/server";
+import Chat from "@/app/(main)/chat/chat";
 
 export default async function page({
   params,
-}: { params: Promise<{ id_chat: string }> }) {
+}: {
+  params: Promise<{ id_chat: string }>;
+}) {
   const { id_chat } = await params;
   const supabase = await createServerClient();
   const { data: chat, error } = await supabase

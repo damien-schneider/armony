@@ -1,4 +1,18 @@
 "use client";
+import { type UseChatHelpers, useChat } from "@ai-sdk/react";
+import { useQueryClient } from "@tanstack/react-query";
+import type { Tables } from "@workspace/supabase/types/database";
+import { usePathname } from "next/navigation";
+import {
+  createContext,
+  type ReactNode,
+  use,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
+import { toast } from "sonner";
+import { v4 as uuidv4 } from "uuid";
 import type {
   MessageWithImages,
   RepromptOptions,
@@ -12,20 +26,6 @@ import type { ChatApiCallCustomBody } from "@/app/api/chat/route";
 import { useMessageQuotas } from "@/hooks/queries/client/use-ai-calls.query";
 import { useSession } from "@/hooks/queries/use-session";
 import { keyChat, keyMessageUsage } from "@/lib/query-key-factory";
-import { type UseChatHelpers, useChat } from "@ai-sdk/react";
-import { useQueryClient } from "@tanstack/react-query";
-import type { Tables } from "@workspace/supabase/types/database";
-import { usePathname } from "next/navigation";
-import {
-  type ReactNode,
-  createContext,
-  use,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
-import { toast } from "sonner";
-import { v4 as uuidv4 } from "uuid";
 
 type AiSdkChatContextType = {
   messages: MessageWithImages[];

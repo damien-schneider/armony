@@ -1,17 +1,16 @@
 "use client";
 
-import { getErrorRedirect } from "@/utils/helpers";
-import { getStripeClient } from "@/utils/stripe/client";
-import { checkoutWithStripe, createStripePortal } from "@/utils/stripe/server";
-
-import { FreeProductCard } from "@/app/(website)/pricing/free-product-card";
-import { ProductCard } from "@/app/(website)/pricing/product-card";
 import type { User } from "@supabase/supabase-js";
 import type { Tables } from "@workspace/supabase/types/database";
 import { Button } from "@workspace/ui/components/button";
 import { usePathname, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
+import { FreeProductCard } from "@/app/(website)/pricing/free-product-card";
+import { ProductCard } from "@/app/(website)/pricing/product-card";
+import { getErrorRedirect } from "@/utils/helpers";
+import { getStripeClient } from "@/utils/stripe/client";
+import { checkoutWithStripe, createStripePortal } from "@/utils/stripe/server";
 
 type Subscription = Tables<"subscriptions">;
 type Product = Tables<"products">;
@@ -134,7 +133,7 @@ export default function Pricing({
 
   if (products.length === 0) {
     return (
-      <section className="text-center py-12">
+      <section className="py-12 text-center">
         <p className="text-lg">No subscription pricing plans found.</p>
       </section>
     );
@@ -142,10 +141,10 @@ export default function Pricing({
 
   return (
     <section className="w-full">
-      <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-24 lg:px-8">
         {/* Only show billing interval selector if we have multiple intervals */}
         {intervals.length > 1 && (
-          <div className="flex justify-center mb-12">
+          <div className="mb-12 flex justify-center">
             <div className="inline-flex rounded-lg border p-0.5">
               {intervals.includes("month") && (
                 <Button
@@ -169,7 +168,7 @@ export default function Pricing({
           </div>
         )}
 
-        <div className="flex flex-wrap gap-6 justify-center">
+        <div className="flex flex-wrap justify-center gap-6">
           {/* Free Tier Card */}
           <FreeProductCard onGetStarted={() => router.push("/signup")} />
 

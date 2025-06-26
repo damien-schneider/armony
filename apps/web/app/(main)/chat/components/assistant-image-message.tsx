@@ -7,7 +7,10 @@ import { toast } from "sonner";
 export function AssistantImageMessage({
   imagePath,
   alt,
-}: { imagePath: string; alt?: string }) {
+}: {
+  imagePath: string;
+  alt?: string;
+}) {
   const { data: src, isLoading } = useQuery({
     queryKey: ["image", imagePath],
     queryFn: async () => {
@@ -38,10 +41,10 @@ export function AssistantImageMessage({
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="rounded-3xl border p-1.5 mb-4 bg-background-2 overflow-hidden shadow-md w-full"
+      className="mb-4 w-full overflow-hidden rounded-3xl border bg-background-2 p-1.5 shadow-md"
     >
       {isLoading && (
-        <Skeleton className="animate-pulse w-full h-64 bg-gray-200 rounded-3xl" />
+        <Skeleton className="h-64 w-full animate-pulse rounded-3xl bg-gray-200" />
       )}
       {!isLoading && src && (
         <Image
@@ -49,7 +52,7 @@ export function AssistantImageMessage({
           alt={alt || "Generated image"}
           width={512}
           height={512}
-          className="object-contain w-full h-fit p-0! m-0! transition-transform hover:scale-99 rounded-2xl"
+          className="m-0! h-fit w-full rounded-2xl object-contain p-0! transition-transform hover:scale-99"
         />
       )}
     </motion.div>

@@ -1,6 +1,6 @@
-import { keySnippet } from "@/lib/query-key-factory";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createClient } from "@workspace/supabase/client";
+import { keySnippet } from "@/lib/query-key-factory";
 
 export const useCreateSnippet = () => {
   const queryClient = useQueryClient();
@@ -10,7 +10,12 @@ export const useCreateSnippet = () => {
       title,
       content,
       idUser,
-    }: { title: string; content: string; emoji: string; idUser: string }) => {
+    }: {
+      title: string;
+      content: string;
+      emoji: string;
+      idUser: string;
+    }) => {
       const supabase = createClient();
 
       const { data } = await supabase

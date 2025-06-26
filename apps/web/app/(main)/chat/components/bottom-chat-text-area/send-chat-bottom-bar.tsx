@@ -1,16 +1,4 @@
 "use client";
-import { ChatTiptapAutocompleteSuggestion } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-autocomplete-suggestion";
-import { ChatTiptapProvider } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-context";
-import { ChatTiptapComponent } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-text-area";
-import { ListSelectedImages } from "@/app/(main)/chat/components/list-selected-images";
-import { SelectModelWithDropdown } from "@/app/(main)/chat/components/select-model-with-dropdown";
-import AddSnippetButton from "@/app/(main)/chat/components/snippets/add-snippet-button";
-import { SnippetsMenu } from "@/app/(main)/chat/components/snippets/snippets-menu";
-import { useSharedAiChat } from "@/app/(main)/contexts/ai-sdk-chat-context";
-import { useChatContext } from "@/app/(main)/contexts/chat-context";
-import { availableModels } from "@/app/api/chat/lib/ai-models-client.lib";
-import { useMessageQuotas } from "@/hooks/queries/client/use-ai-calls.query";
-import { useSession } from "@/hooks/queries/use-session";
 import { Button } from "@workspace/ui/components/button";
 import {
   Select,
@@ -23,6 +11,18 @@ import { Add, Send } from "iconsax-react";
 import { motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { type ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChatTiptapAutocompleteSuggestion } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-autocomplete-suggestion";
+import { ChatTiptapProvider } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-context";
+import { ChatTiptapComponent } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-text-area";
+import { ListSelectedImages } from "@/app/(main)/chat/components/list-selected-images";
+import { SelectModelWithDropdown } from "@/app/(main)/chat/components/select-model-with-dropdown";
+import AddSnippetButton from "@/app/(main)/chat/components/snippets/add-snippet-button";
+import { SnippetsMenu } from "@/app/(main)/chat/components/snippets/snippets-menu";
+import { useSharedAiChat } from "@/app/(main)/contexts/ai-sdk-chat-context";
+import { useChatContext } from "@/app/(main)/contexts/chat-context";
+import { availableModels } from "@/app/api/chat/lib/ai-models-client.lib";
+import { useMessageQuotas } from "@/hooks/queries/client/use-ai-calls.query";
+import { useSession } from "@/hooks/queries/use-session";
 
 export function SendChatBottomBar() {
   const { handleMessageSubmit, messages } = useSharedAiChat();
@@ -79,7 +79,7 @@ export function SendChatBottomBar() {
     <ChatTiptapProvider>
       <div className="relative z-50">
         <motion.div
-          className="rounded-2xl border bg-background-2 z-50"
+          className="z-50 rounded-2xl border bg-background-2"
           layoutId="chat-input-2"
           layout="position"
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -103,7 +103,7 @@ export function SendChatBottomBar() {
 
           <ChatTiptapComponent />
 
-          <div className="flex justify-between items-center p-1 gap-2 ">
+          <div className="flex items-center justify-between gap-2 p-1 ">
             <div className="flex items-center gap-2">
               <Select
                 value={tone}
