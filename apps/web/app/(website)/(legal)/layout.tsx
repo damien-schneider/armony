@@ -7,7 +7,7 @@ export default function LayoutLegalWebsite({
   children: ReactNode;
 }) {
   return (
-    <section className="mx-auto max-w-2xl px-4 py-20">
+    <section className="mx-auto max-w-3xl px-4 py-20">
       <div className="prose prose-neutral dark:prose-invert">{children}</div>
     </section>
   );

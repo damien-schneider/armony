@@ -28,7 +28,7 @@ export function SpaceSelection({ spaces }: SpaceSelectionProps) {
 
   return (
     <div className="flex flex-col items-center gap-8">
-      <div className="flex w-full max-w-2xl flex-wrap justify-center gap-8">
+      <div className="flex w-full max-w-3xl flex-wrap justify-center gap-8">
         {spaces.map((space) => (
           <button
             key={space.id}

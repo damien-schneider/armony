@@ -33,7 +33,7 @@ const MainContent = ({ children }: { children: ReactNode }) => {
         className={cn(
           "relative h-full w-full transition-all duration-500 ease-in-out",
           isSidebarOpen
-            ? "translate-x-80 opacity-50 md:translate-x-0 md:pl-80 md:opacity-100"
+            ? "pointer-events-none translate-x-80 opacity-50 md:pointer-events-auto md:translate-x-0 md:pl-80 md:opacity-100"
             : "",
         )}
       >

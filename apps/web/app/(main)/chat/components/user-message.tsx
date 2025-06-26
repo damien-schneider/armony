@@ -167,7 +167,7 @@ export function UserMessage({
         animate={{ opacity: 1, x: 0 }}
       >
         {imagePreviews.length > 0 && (
-          <div className="mb-2 flex max-w-2xl flex-wrap justify-end gap-2">
+          <div className="mb-2 flex max-w-3xl flex-wrap justify-end gap-2">
             {imagePreviews.map((image) => (
               <div
                 key={image.id}

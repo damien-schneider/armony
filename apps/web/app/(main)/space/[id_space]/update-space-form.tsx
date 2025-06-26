@@ -156,7 +156,7 @@ export function UpdateSpaceForm({ idSpace }: { idSpace: string }) {
   }
 
   return (
-    <div className="container mx-auto max-w-2xl py-8">
+    <div className="container mx-auto max-w-3xl py-8">
       <div className="flex items-center gap-2">
         <EmojiPickerDialog onEmojiSelect={handleUpdateEmoji}>
           <Button size="icon-lg" variant="secondary">
