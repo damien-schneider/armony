@@ -45,7 +45,7 @@ function ModelCategory({
   );
 
   return (
-    <div className="">
+    <div className="flex flex-col justify-end">
       <P className="-top-1 sticky z-1 rounded-b-lg bg-background px-2 py-1 font-medium text-muted-foreground text-sm">
         {title}
       </P>
@@ -120,9 +120,9 @@ export function ModelSelectionGrid() {
   });
 
   return (
-    <div className="px-4 sm:px-2">
+    <div className="@container w-full max-w-3xl px-4 sm:px-2">
       <ScrollArea className="" ref={scrollAreaRef}>
-        <ScrollAreaViewport className="max-h-[40dvh] rounded-lg pb-6">
+        <ScrollAreaViewport className="max-h-[70dvh] rounded-lg pb-6">
           <div
             className={cn(
               "pointer-events-none absolute right-0 bottom-0 left-0 z-20 h-30 bg-gradient-to-b from-transparent to-background transition-opacity duration-300",
@@ -130,7 +130,7 @@ export function ModelSelectionGrid() {
             )}
           />
 
-          <div className="grid max-w-108 grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid @4xl:grid-cols-4 @sm:grid-cols-1 @xl:grid-cols-2 gap-4">
             {modelCategoryList.map((category) => (
               <ModelCategory
                 key={modelCategories[category].slug}
@@ -150,13 +150,13 @@ export function ModelSelectionGrid() {
  * Component displayed when chat has no messages, prompting user to select a model
  */
 export function EmptyChatModelSelection() {
-  const { inputValue } = useChatContext();
+  // const { inputValue } = useChatContext();
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center">
       <P className="mb-4 text-muted-foreground">
         Choose a model to start your conversation
       </P>
-      {inputValue && <ModelSelectionGrid />}
+      <ModelSelectionGrid />
     </div>
   );
 }

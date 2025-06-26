@@ -1,14 +1,13 @@
 "use client";
 import { Button } from "@workspace/ui/components/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@workspace/ui/components/select";
-import { Add, Send } from "iconsax-react";
-import { motion } from "motion/react";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@workspace/ui/components/select";
+import { Paperclip2, Send } from "iconsax-react";
 import { usePathname } from "next/navigation";
 import { type ChangeEvent, useEffect, useRef, useState } from "react";
 import { ChatTiptapAutocompleteSuggestion } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-autocomplete-suggestion";
@@ -16,7 +15,7 @@ import { ChatTiptapProvider } from "@/app/(main)/chat/components/bottom-chat-tex
 import { ChatTiptapComponent } from "@/app/(main)/chat/components/bottom-chat-text-area/chat-tiptap-text-area";
 import { ListSelectedImages } from "@/app/(main)/chat/components/list-selected-images";
 import { SelectModelWithDropdown } from "@/app/(main)/chat/components/select-model-with-dropdown";
-import AddSnippetButton from "@/app/(main)/chat/components/snippets/add-snippet-button";
+import { AddSnippetButton } from "@/app/(main)/chat/components/snippets/add-snippet-button";
 import { SnippetsMenu } from "@/app/(main)/chat/components/snippets/snippets-menu";
 import { useSharedAiChat } from "@/app/(main)/contexts/ai-sdk-chat-context";
 import { useChatContext } from "@/app/(main)/contexts/chat-context";
@@ -25,15 +24,18 @@ import { useMessageQuotas } from "@/hooks/queries/client/use-ai-calls.query";
 import { useSession } from "@/hooks/queries/use-session";
 
 export function SendChatBottomBar() {
-  const { handleMessageSubmit, messages } = useSharedAiChat();
+  const {
+    handleMessageSubmit,
+    //  messages,
+  } = useSharedAiChat();
   const {
     inputValue,
     selectedFiles,
     addFiles,
     removeFile,
     model,
-    tone,
-    changeChatTone,
+    // tone,
+    // changeChatTone,
     changeChatModel,
   } = useChatContext();
   const { idUser } = useSession();
@@ -78,13 +80,12 @@ export function SendChatBottomBar() {
   return (
     <ChatTiptapProvider>
       <div className="relative z-50">
-        <motion.div
+        <div
           className="z-50 rounded-2xl border bg-background-2"
-          layoutId="chat-input-2"
-          layout="position"
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          // layoutId="chat-input-2"
+          // layout="position"
+          // transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          <AddSnippetButton />
           {selectedFiles.length > 0 && supportsImageInput && (
             <ListSelectedImages
               images={selectedFiles.map((file) => {
@@ -105,7 +106,7 @@ export function SendChatBottomBar() {
 
           <div className="flex items-center justify-between gap-2 p-1 ">
             <div className="flex items-center gap-2">
-              <Select
+              {/* <Select
                 value={tone}
                 onValueChange={(value) => changeChatTone(value)}
               >
@@ -124,18 +125,18 @@ export function SendChatBottomBar() {
                   <SelectItem value="educational">Educational</SelectItem>
                   <SelectItem value="concise">Concise</SelectItem>
                 </SelectContent>
-              </Select>
+              </Select> */}
 
-              {messages.length > 0 && (
-                <SelectModelWithDropdown
-                  imageInput={selectedFiles.length > 0}
-                  onSelect={(model) => {
-                    changeChatModel(model);
-                  }}
-                >
-                  Select model
-                </SelectModelWithDropdown>
-              )}
+              {/* {messages.length > 0 && ( */}
+              <SelectModelWithDropdown
+                imageInput={selectedFiles.length > 0}
+                onSelect={(model) => {
+                  changeChatModel(model);
+                }}
+              >
+                Select model
+              </SelectModelWithDropdown>
+              {/* )} */}
 
               {supportsImageInput && (
                 <div className="relative">
@@ -149,14 +150,15 @@ export function SendChatBottomBar() {
                   />
                   <Button
                     variant="ghost"
-                    size="icon"
+                    size="icon-sm"
                     onClick={() => fileInputRef.current?.click()}
                     className={selectedFiles.length > 0 ? "text-primary" : ""}
                   >
-                    <Add color="currentColor" className="size-5" />
+                    <Paperclip2 color="currentColor" className="size-5" />
                   </Button>
                 </div>
               )}
+              <AddSnippetButton />
             </div>
 
             <Button
@@ -168,7 +170,7 @@ export function SendChatBottomBar() {
               <Send color="currentColor" className="size-5" />
             </Button>
           </div>
-        </motion.div>
+        </div>
       </div>
       <ChatTiptapAutocompleteSuggestion />
     </ChatTiptapProvider>

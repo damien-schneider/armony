@@ -31,7 +31,7 @@ export function SelectModelWithDropdown({
   const { model: selectedModel } = useChatContext();
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="group inline-flex transform-gpu cursor-pointer select-none items-center gap-1 rounded-md px-2 py-1 transition-colors hover:bg-background-2">
+      <DropdownMenuTrigger className="group inline-flex transform-gpu cursor-pointer select-none items-center gap-1 rounded-lg px-2 py-1 transition-colors hover:bg-accent">
         <IconAiProvider provider={selectedModel.provider} className="size-4" />
         <span className="w-fit max-w-0 transform-gpu overflow-hidden transition-all duration-500 group-hover:max-w-28">
           <span className="transform-gpu whitespace-nowrap font-medium text-muted-foreground text-sm tracking-tighter opacity-0 transition-opacity duration-500 group-hover:opacity-100">
