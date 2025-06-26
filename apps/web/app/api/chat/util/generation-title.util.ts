@@ -1,6 +1,6 @@
-import { envServer } from "@/env/server";
 import { createOpenAI } from "@ai-sdk/openai";
 import { generateText } from "ai";
+import { envServer } from "@/env/server";
 import { getTitleGenerationPrompt } from "../lib/prompting.lib";
 
 export async function generateConversationTitle(

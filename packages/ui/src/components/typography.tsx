@@ -1,5 +1,5 @@
 import { cn } from "@workspace/ui/lib/utils";
-import { type VariantProps, cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
 import type { ComponentProps } from "react";
 
@@ -7,7 +7,7 @@ export const H1 = ({ className, children, ...props }: ComponentProps<"h1">) => {
   return (
     <h1
       className={cn(
-        "md:text-5xl lg:text-6xl sm:text-4xl text-3xl text-foreground tracking-tight",
+        "text-3xl text-foreground tracking-tight sm:text-4xl md:text-5xl lg:text-6xl",
         className,
       )}
       {...props}
@@ -21,7 +21,7 @@ export const H2 = ({ className, children, ...props }: ComponentProps<"h2">) => {
   return (
     <h2
       className={cn(
-        "md:text-4xl sm:text-3xl text-2xl text-foreground tracking-tight font-medium",
+        "font-medium text-2xl text-foreground tracking-tight sm:text-3xl md:text-4xl",
         className,
       )}
       {...props}
@@ -35,7 +35,7 @@ export const H3 = ({ className, children, ...props }: ComponentProps<"h3">) => {
   return (
     <h3
       className={cn(
-        "text-xl text-foreground font-medium tracking-tight",
+        "font-medium text-foreground text-xl tracking-tight",
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ export const H4 = ({ className, children, ...props }: ComponentProps<"h4">) => {
   return (
     <h4
       className={cn(
-        "text-lg text-foreground font-medium tracking-tight",
+        "font-medium text-foreground text-lg tracking-tight",
         className,
       )}
       {...props}
@@ -63,7 +63,7 @@ export const H5 = ({ className, children, ...props }: ComponentProps<"h5">) => {
   return (
     <h5
       className={cn(
-        "text-base text-foreground font-medium tracking-tight",
+        "font-medium text-base text-foreground tracking-tight",
         className,
       )}
       {...props}
@@ -76,13 +76,13 @@ export const H5 = ({ className, children, ...props }: ComponentProps<"h5">) => {
 const paragraphVariants = cva("", {
   variants: {
     variant: {
-      default: "text-sm font-medium tracking-tight text-foreground/80",
-      "body-1": "text-sm font-medium tracking-tight text-foreground/80",
-      "body-xl": "sm:text-xl text-lg font-light text-foreground/80",
-      caption: "text-xs text-foreground/50",
+      default: "font-medium text-foreground/80 text-sm tracking-tight",
+      "body-1": "font-medium text-foreground/80 text-sm tracking-tight",
+      "body-xl": "font-light text-foreground/80 text-lg sm:text-xl",
+      caption: "text-foreground/50 text-xs",
       "caption-lg": "text-foreground/50",
-      error: "text-sm text-red-500",
-      success: "text-sm text-green-500",
+      error: "text-red-500 text-sm",
+      success: "text-green-500 text-sm",
     },
   },
   defaultVariants: {

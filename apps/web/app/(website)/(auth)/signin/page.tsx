@@ -1,4 +1,5 @@
 "use client";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@workspace/ui/components/button";
 import {
   Form,
@@ -9,16 +10,14 @@ import {
   FormMessage,
 } from "@workspace/ui/components/form";
 import { Input, PasswordInput } from "@workspace/ui/components/input";
-
-import { signInWithPassword } from "@/app/auth/actions";
-import { OrSeparator } from "@/app/auth/components/or-separator";
-import { OAuthButton } from "@/app/auth/components/provider-button";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { H1, P } from "@workspace/ui/components/typography";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { signInWithPassword } from "@/app/auth/actions";
+import { OrSeparator } from "@/app/auth/components/or-separator";
+import { OAuthButton } from "@/app/auth/components/provider-button";
 
 const signInSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -55,9 +54,9 @@ export default function SignInPage() {
 
   return (
     <>
-      <H1 className="text-center my-8">Login to your Account</H1>
+      <H1 className="my-8 text-center">Login to your Account</H1>
       <div className="flex flex-col gap-6">
-        <div className="grid gap-4 w-full">
+        <div className="grid w-full gap-4">
           {/* <OAuthButton provider="notion" /> */}
           <OAuthButton provider="google" />
         </div>
@@ -66,7 +65,7 @@ export default function SignInPage() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {errorMessage && (
-              <P className="text-red-500 text-sm text-center">{errorMessage}</P>
+              <P className="text-center text-red-500 text-sm">{errorMessage}</P>
             )}
 
             <FormField
@@ -116,7 +115,7 @@ export default function SignInPage() {
             <Button
               type="submit"
               variant="default"
-              className="w-full mt-8"
+              className="mt-8 w-full"
               disabled={loading}
             >
               Sign In
@@ -125,7 +124,7 @@ export default function SignInPage() {
         </Form>
       </div>
 
-      <P className="text-center mt-2">
+      <P className="mt-2 text-center">
         New to Armony?{" "}
         <Link className="link-primary" href="/signup">
           Sign up

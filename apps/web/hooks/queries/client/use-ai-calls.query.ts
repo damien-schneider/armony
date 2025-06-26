@@ -1,8 +1,8 @@
 "use client";
-import { useSubscriptionByUser } from "@/hooks/queries/client/use-subscriptions.query";
-import { keyEmpty, keyMessageUsage } from "@/lib/query-key-factory";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@workspace/supabase/client";
+import { useSubscriptionByUser } from "@/hooks/queries/client/use-subscriptions.query";
+import { keyEmpty, keyMessageUsage } from "@/lib/query-key-factory";
 
 export const useMessageQuotas = (idUser: string | undefined | null) => {
   const { data: subscription } = useSubscriptionByUser(idUser);

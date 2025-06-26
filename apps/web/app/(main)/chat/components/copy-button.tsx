@@ -46,7 +46,7 @@ export const CopyToClipboardButton = ({
           >
             {isCopied ? (
               <>
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-background-2 px-2 rounded-md text-muted-foreground select-none">
+                <div className="-top-6 -translate-x-1/2 absolute left-1/2 select-none rounded-md bg-background-2 px-2 text-muted-foreground">
                   copied
                 </div>
                 <CopySuccess color="currentColor" className="size-4" />

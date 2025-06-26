@@ -1,10 +1,9 @@
 import "server-only";
-import type { AiModelKey } from "@/app/api/chat/ai-models.type";
-import { envServer } from "@/env/server";
 import { createOpenAI } from "@ai-sdk/openai";
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
-
 import type { ImageModel, LanguageModelV1 } from "ai";
+import type { AiModelKey } from "@/app/api/chat/ai-models.type";
+import { envServer } from "@/env/server";
 
 const openrouter = createOpenRouter({
   apiKey: envServer.NEXT_PRIVATE_OPENROUTER_API_KEY,

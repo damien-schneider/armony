@@ -1,10 +1,4 @@
 "use client";
-import { getModel } from "@/app/api/chat/util/ai-models-client.util";
-import {
-  useDeleteChat,
-  useUpdateChat,
-} from "@/hooks/queries/client/use-chats.mutation";
-import { IconAiProvider } from "@/lib/provider-icons";
 import type { Tables } from "@workspace/supabase/types/database";
 import { Button } from "@workspace/ui/components/button";
 import {
@@ -29,6 +23,12 @@ import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 import { toast } from "sonner";
+import { getModel } from "@/app/api/chat/util/ai-models-client.util";
+import {
+  useDeleteChat,
+  useUpdateChat,
+} from "@/hooks/queries/client/use-chats.mutation";
+import { IconAiProvider } from "@/lib/provider-icons";
 
 export const SidebarChatItem = ({ chat }: { chat: Tables<"chats"> }) => {
   const { id_chat: activeChatId } = useParams();
@@ -86,52 +86,52 @@ export const SidebarChatItem = ({ chat }: { chat: Tables<"chats"> }) => {
         <ContextMenuTrigger asChild={true}>
           <Button
             asChild={true}
-            variant={isActive ? "ghost-active" : "ghost"}
             className="gap-0"
+            variant={isActive ? "ghost-active" : "ghost"}
           >
             <Link
+              className={cn(
+                "group flex w-full items-center justify-between rounded-none font-base transition-none",
+              )}
               href={`/chat/${chat.id}`}
               replace={true}
-              className={cn(
-                "flex justify-between items-center font-base w-full rounded-none group transition-none",
-              )}
             >
               <IconAiProvider
+                className="h-4 max-h-4 min-h-4 w-4 min-w-4 max-w-4"
                 provider={modelDetails?.provider ?? null}
-                className="w-4 h-4 min-w-4 min-h-4 max-h-4 max-w-4"
               />
 
               <P
                 className={cn(
-                  "truncate flex-1 ml-2",
+                  "ml-2 flex-1 truncate",
                   isActive
-                    ? "text-foreground font-semibold"
-                    : "text-foreground/70 font-medium",
+                    ? "font-semibold text-foreground"
+                    : "font-medium text-foreground/70",
                 )}
               >
                 {chat.title ?? "Untitled chat"}
               </P>
-              <div className="items-center group-hover:inline-flex hidden">
+              <div className="hidden items-center group-hover:inline-flex">
                 <Button
-                  variant="ghost-2"
-                  size="icon-xs"
                   onClick={(e) => {
                     e.preventDefault();
                     handleRename();
                   }}
+                  size="icon-xs"
+                  variant="ghost-2"
                 >
-                  <Edit2 color="currentColor" className="size-4" />
+                  <Edit2 className="size-4" color="currentColor" />
                   <span className="sr-only">Rename</span>
                 </Button>
                 <Button
-                  variant="ghost-destructive"
-                  size="icon-xs"
                   onClick={(e) => {
                     e.preventDefault();
                     handleDelete();
                   }}
+                  size="icon-xs"
+                  variant="ghost-destructive"
                 >
-                  <Trash color="currentColor" className="size-4" />
+                  <Trash className="size-4" color="currentColor" />
                   <span className="sr-only">Delete</span>
                 </Button>
               </div>
@@ -140,18 +140,18 @@ export const SidebarChatItem = ({ chat }: { chat: Tables<"chats"> }) => {
         </ContextMenuTrigger>
         <ContextMenuContent>
           <ContextMenuItem onClick={handleRename}>
-            <Edit2 color="currentColor" className="size-4" />
+            <Edit2 className="size-4" color="currentColor" />
             <span>Rename</span>
           </ContextMenuItem>
           <ContextMenuSeparator />
-          <ContextMenuItem variant="destructive" onClick={handleDelete}>
-            <Trash color="currentColor" className="size-4" />
+          <ContextMenuItem onClick={handleDelete} variant="destructive">
+            <Trash className="size-4" color="currentColor" />
             <span>Delete</span>
           </ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
       {/* TODO: Move this as a dialog, and the open rename in a context for optimization */}
-      <Dialog open={isRenameDialogOpen} onOpenChange={setIsRenameDialogOpen}>
+      <Dialog onOpenChange={setIsRenameDialogOpen} open={isRenameDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Rename Chat</DialogTitle>
@@ -159,27 +159,27 @@ export const SidebarChatItem = ({ chat }: { chat: Tables<"chats"> }) => {
           <form onSubmit={handleRenameSubmit}>
             <div className="grid gap-4 py-4">
               <Input
-                id="name"
+                autoFocus={true}
+                className="w-full"
+                id={`chat-${chat.id}-title`}
+                onChange={(e) => setNewChatTitle(e.target.value)}
                 placeholder="Chat name"
                 value={newChatTitle}
-                onChange={(e) => setNewChatTitle(e.target.value)}
-                className="w-full"
-                autoFocus={true}
               />
             </div>
             <DialogFooter>
               <Button
+                disabled={updateChat.isPending}
+                onClick={() => setIsRenameDialogOpen(false)}
                 type="button"
                 variant="outline"
-                onClick={() => setIsRenameDialogOpen(false)}
-                disabled={updateChat.isPending}
               >
                 Cancel
               </Button>
               <Button
-                type="submit"
-                disabled={updateChat.isPending}
                 className={updateChat.isPending ? "cursor-not-allowed" : ""}
+                disabled={updateChat.isPending}
+                type="submit"
               >
                 {updateChat.isPending ? "Saving..." : "Save"}
               </Button>

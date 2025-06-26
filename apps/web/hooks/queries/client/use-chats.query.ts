@@ -1,8 +1,8 @@
 "use client";
-import { keyChat, keyEmpty } from "@/lib/query-key-factory";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@workspace/supabase/client";
 import type { Tables } from "@workspace/supabase/types/database";
+import { keyChat, keyEmpty } from "@/lib/query-key-factory";
 
 export const useChatById = (id: Tables<"chats">["id"]) => {
   return useQuery({

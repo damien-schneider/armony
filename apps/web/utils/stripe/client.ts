@@ -1,6 +1,6 @@
 "use client";
+import { loadStripe, type Stripe } from "@stripe/stripe-js";
 import { envClient } from "@/env/client";
-import { type Stripe, loadStripe } from "@stripe/stripe-js";
 
 let stripePromise: Promise<Stripe | null>;
 

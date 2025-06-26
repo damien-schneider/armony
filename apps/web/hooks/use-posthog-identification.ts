@@ -1,8 +1,8 @@
 "use client";
-import { envClient } from "@/env/client";
-import { useSession } from "@/hooks/queries/use-session";
 import posthog from "posthog-js";
 import { useEffect } from "react";
+import { envClient } from "@/env/client";
+import { useSession } from "@/hooks/queries/use-session";
 
 export function usePosthogUserIdentification(): void {
   const { session, isLoading } = useSession();

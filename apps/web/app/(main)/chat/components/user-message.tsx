@@ -1,15 +1,5 @@
 "use client";
 
-import { CopyToClipboardButton } from "@/app/(main)/chat/components/copy-button";
-import { MessageEditTextarea } from "@/app/(main)/chat/components/message-edit-textarea";
-import { SelectModelWithDropdown } from "@/app/(main)/chat/components/select-model-with-dropdown";
-
-import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
-import { type RefObject, useEffect, useRef, useState } from "react";
-
-import { useSharedAiChat } from "@/app/(main)/contexts/ai-sdk-chat-context";
-import { envClient } from "@/env/client";
 import { Button } from "@workspace/ui/components/button";
 import {
   Tooltip,
@@ -19,7 +9,15 @@ import {
 } from "@workspace/ui/components/tooltip";
 import type { Message } from "ai";
 import { Edit2, Refresh2 } from "iconsax-react";
+import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
+import { type RefObject, useEffect, useRef, useState } from "react";
 import { useResizeObserver } from "usehooks-ts";
+import { CopyToClipboardButton } from "@/app/(main)/chat/components/copy-button";
+import { MessageEditTextarea } from "@/app/(main)/chat/components/message-edit-textarea";
+import { SelectModelWithDropdown } from "@/app/(main)/chat/components/select-model-with-dropdown";
+import { useSharedAiChat } from "@/app/(main)/contexts/ai-sdk-chat-context";
+import { envClient } from "@/env/client";
 
 export interface RepromptOptions {
   reprompting: boolean;
@@ -98,12 +96,12 @@ export function UserMessage({
   return (
     <div className={className}>
       {envClient.NEXT_PUBLIC_NODE_ENV === "development" && (
-        <div className="text-xs text-neutral-500">
+        <div className="text-neutral-500 text-xs">
           <p>Message ID: {message.id}</p>
           <p>Message Index: {messageIndex}</p>
         </div>
       )}
-      <div className="flex items-end justify-end gap-2 mb-2">
+      <div className="mb-2 flex items-end justify-end gap-2">
         <SelectModelWithDropdown
           onSelect={(model) => {
             handleMessageSubmit({
@@ -169,16 +167,16 @@ export function UserMessage({
         animate={{ opacity: 1, x: 0 }}
       >
         {imagePreviews.length > 0 && (
-          <div className="flex flex-wrap justify-end gap-2 mb-2 max-w-2xl">
+          <div className="mb-2 flex max-w-2xl flex-wrap justify-end gap-2">
             {imagePreviews.map((image) => (
               <div
                 key={image.id}
-                className="relative w-24 h-24 rounded-lg overflow-hidden border"
+                className="relative h-24 w-24 overflow-hidden rounded-lg border"
               >
                 <Image
                   src={image.url}
                   alt="Content uploaded by user"
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                   fill={true}
                   sizes="128px"
                 />
@@ -207,7 +205,10 @@ export function UserMessage({
 const MessageComponent = ({
   message,
   initialHeight,
-}: { message: Message | MessageWithImages; initialHeight?: number }) => {
+}: {
+  message: Message | MessageWithImages;
+  initialHeight?: number;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, height: initialHeight }}
@@ -218,7 +219,7 @@ const MessageComponent = ({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="prose prose-neutral dark:prose-invert text-foreground bg-background-2 rounded-2xl px-4 py-2 w-fit rounded-br-sm max-w-full whitespace-pre-wrap">
+      <div className="prose prose-neutral dark:prose-invert w-fit max-w-full whitespace-pre-wrap rounded-2xl rounded-br-sm bg-background-2 px-4 py-2 text-foreground">
         {message.content}
       </div>
     </motion.div>

@@ -24,7 +24,7 @@ export function EmojiPickerDialog({
       <PopoverTrigger asChild={true}>{children}</PopoverTrigger>
       <PopoverContent
         variant="no-style"
-        className="border rounded-[11px] border-border"
+        className="rounded-[11px] border border-border"
       >
         {/* Both are needed as th @ts-expect-error return error in both case --' */}
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}

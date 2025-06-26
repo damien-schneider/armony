@@ -1,9 +1,8 @@
 "use client";
 
+import { cn } from "@workspace/ui/lib/utils";
 import { Slider as SliderPrimitive } from "radix-ui";
 import * as React from "react";
-
-import { cn } from "@workspace/ui/lib/utils";
 
 const sliderVariants = {
   default: {
@@ -49,32 +48,32 @@ function Slider({
 
   return (
     <SliderPrimitive.Root
-      data-slot="slider"
-      defaultValue={defaultValue}
-      value={value}
-      min={min}
-      max={max}
       className={cn(
-        "relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
+        "relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50",
         className,
       )}
+      data-slot="slider"
+      defaultValue={defaultValue}
+      max={max}
+      min={min}
+      value={value}
       {...props}
     >
       <SliderPrimitive.Track
-        data-slot="slider-track"
         className={cn(variantStyles.track)}
+        data-slot="slider-track"
       >
         <SliderPrimitive.Range
-          data-slot="slider-range"
           className={cn(variantStyles.range)}
+          data-slot="slider-range"
         />
       </SliderPrimitive.Track>
       {Array.from({ length: _values.length }, (_, index) => (
         <SliderPrimitive.Thumb
-          data-slot="slider-thumb"
-          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-          key={`thumb-${index}`}
           className={cn(variantStyles.thumb)}
+          data-slot="slider-thumb"
+          // biome-ignore lint/suspicious/noArrayIndexKey: <>
+          key={`thumb-${index}`}
         />
       ))}
     </SliderPrimitive.Root>

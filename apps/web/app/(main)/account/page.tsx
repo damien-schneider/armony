@@ -1,15 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
-
-import { useAuthUser } from "@/hooks/queries/use-session";
 import { createClient } from "@workspace/supabase/client";
-import { z } from "zod";
-
-import { useCustomerPortal } from "@/hooks/queries/client/use-customer-portal.query";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -34,7 +26,13 @@ import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
 import { H1, H2, P } from "@workspace/ui/components/typography";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+import { useCustomerPortal } from "@/hooks/queries/client/use-customer-portal.query";
+import { useAuthUser } from "@/hooks/queries/use-session";
 
 const UpdateProfileSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),
@@ -157,7 +155,7 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="container max-w-2xl mx-auto py-8 px-4">
+    <div className="container mx-auto max-w-2xl px-4 py-8">
       <H1 className="mb-8">Account Settings</H1>
 
       <div className="space-y-10">
@@ -166,8 +164,8 @@ export default function AccountPage() {
           <H2 className="mb-6">Profile Information</H2>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(onUpdateProfile)}
               className="space-y-4"
+              onSubmit={form.handleSubmit(onUpdateProfile)}
             >
               <FormField
                 control={form.control}
@@ -182,7 +180,7 @@ export default function AccountPage() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={isUpdating}>
+              <Button disabled={isUpdating} type="submit">
                 {isUpdating ? "Updating..." : "Save Changes"}
               </Button>
             </form>
@@ -193,18 +191,20 @@ export default function AccountPage() {
         <section>
           <H2 className="mb-6">Email Address</H2>
           <div>
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" value={user.email ?? ""} disabled={true} />
-            <P className="mt-1">
-              This is the email address associated with your account.
-            </P>
+            <Label>
+              Email
+              <Input disabled={true} value={user.email ?? ""} />
+              <P className="mt-1">
+                This is the email address associated with your account.
+              </P>
+            </Label>
           </div>
         </section>
         <section>
           {/* TODO: Fix this billing portal link before going to production */}
           <H2 className="mb-6">Manage Billing</H2>
           {customerPortalUrl && (
-            <Button variant="outline" asChild={true}>
+            <Button asChild={true} variant="outline">
               <Link href={customerPortalUrl} target="_blank">
                 Manage Billing
               </Link>
@@ -218,8 +218,8 @@ export default function AccountPage() {
           <div className="flex flex-col gap-4">
             <div>
               <Button
-                variant="outline"
                 onClick={() => router.push("/account/update-password")}
+                variant="outline"
               >
                 Change Password
               </Button>
@@ -270,8 +270,8 @@ export default function AccountPage() {
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
                   <AlertDialogAction
-                    onClick={handleDeleteAccount}
                     className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    onClick={handleDeleteAccount}
                   >
                     Delete Account
                   </AlertDialogAction>

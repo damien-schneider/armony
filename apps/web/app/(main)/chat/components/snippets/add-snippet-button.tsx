@@ -1,7 +1,7 @@
-import AddSnippetDialog from "@/app/(main)/chat/components/snippets/add-snippet-dialog";
-import { useChatContext } from "@/app/(main)/contexts/chat-context";
 import { Button } from "@workspace/ui/components/button";
 import { Shortcut, ShortcutItem } from "@workspace/ui/components/shortcut";
+import AddSnippetDialog from "@/app/(main)/chat/components/snippets/add-snippet-dialog";
+import { useChatContext } from "@/app/(main)/contexts/chat-context";
 export default function AddSnippetButton() {
   const { inputValue } = useChatContext();
   if (inputValue.length < 12) {

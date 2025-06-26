@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 import type { Database } from "types/database.types";
+
 // Array of route prefixes that don't require authentication
 const PUBLIC_ROUTES = [
   "/",
@@ -54,14 +55,12 @@ const createSupabaseClient = (request: NextRequest) => {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          // biome-ignore lint/complexity/noForEach: <Same as supabase documentation>
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value),
           );
 
           supabaseResponse = NextResponse.next({ request });
 
-          // biome-ignore lint/complexity/noForEach: <Same as supabase documentation>
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options),
           );

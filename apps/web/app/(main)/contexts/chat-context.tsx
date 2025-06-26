@@ -1,27 +1,27 @@
 "use client";
+import type { Tables } from "@workspace/supabase/types/database";
+import { useParams } from "next/navigation";
+import {
+  createContext,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+  use,
+  useEffect,
+  useState,
+} from "react";
+import { useLocalStorage } from "usehooks-ts";
 import type {
   AiModelKey,
   ModelDefinition,
 } from "@/app/api/chat/ai-models.type";
 import { fallbackAiModel } from "@/app/api/chat/lib/ai-models-client.lib";
 import {
-  type Tone,
   getToneWithFallback,
+  type Tone,
 } from "@/app/api/chat/lib/prompting.lib";
 import { getModel } from "@/app/api/chat/util/ai-models-client.util";
 import { localStorageKeys } from "@/lib/local-storage-keys";
-import type { Tables } from "@workspace/supabase/types/database";
-import { useParams } from "next/navigation";
-import {
-  type Dispatch,
-  type ReactNode,
-  type SetStateAction,
-  createContext,
-  use,
-  useEffect,
-  useState,
-} from "react";
-import { useLocalStorage } from "usehooks-ts";
 
 type ChatContextType = {
   activeChatId: string | null;

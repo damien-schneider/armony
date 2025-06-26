@@ -1,5 +1,5 @@
-import { envServer } from "@/env/server";
 import Stripe from "stripe";
+import { envServer } from "@/env/server";
 
 export const stripe = new Stripe(envServer.NEXT_PRIVATE_STRIPE_SECRET_KEY, {
   // https://github.com/stripe/stripe-node#configuration

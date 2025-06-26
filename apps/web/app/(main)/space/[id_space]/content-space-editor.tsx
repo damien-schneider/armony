@@ -1,10 +1,3 @@
-import { useUpdateSpace } from "@/hooks/queries/client/use-spaces.mutation";
-import { useState } from "react";
-
-import {
-  convertHtmlToMarkdown,
-  convertMarkdownToHtml,
-} from "@/lib/html-to-markdown";
 import Highlight from "@tiptap/extension-highlight";
 import Placeholder from "@tiptap/extension-placeholder";
 import Typography from "@tiptap/extension-typography";
@@ -15,7 +8,13 @@ import { Button } from "@workspace/ui/components/button";
 import { Label } from "@workspace/ui/components/label";
 import { ScrollArea } from "@workspace/ui/components/scroll-area";
 import { cn } from "@workspace/ui/lib/utils";
+import { useState } from "react";
 import { toast } from "sonner";
+import { useUpdateSpace } from "@/hooks/queries/client/use-spaces.mutation";
+import {
+  convertHtmlToMarkdown,
+  convertMarkdownToHtml,
+} from "@/lib/html-to-markdown";
 
 export const ContentSpaceEditor = ({ space }: { space: Tables<"spaces"> }) => {
   const { mutateAsync: updateSpace, isPending } = useUpdateSpace();
@@ -61,7 +60,7 @@ export const ContentSpaceEditor = ({ space }: { space: Tables<"spaces"> }) => {
 
   return (
     <div className="mt-12">
-      <div className="flex gap-2 items-center pl-2 min-h-11">
+      <div className="flex min-h-11 items-center gap-2 pl-2">
         <Label className="">Space context</Label>
         {markdownContent !== space.content && (
           <Button
@@ -76,13 +75,13 @@ export const ContentSpaceEditor = ({ space }: { space: Tables<"spaces"> }) => {
       </div>
       <div
         className={cn(
-          "relative prose prose-neutral dark:prose-invert max-w-none p-1 border border-border rounded-[20px] before:absolute before:inset-1 hover:before:bg-background-2 before:transition before:duration-150 before:rounded-2xl",
+          "prose prose-neutral dark:prose-invert relative max-w-none rounded-[20px] border border-border p-1 before:absolute before:inset-1 before:rounded-2xl before:transition before:duration-150 hover:before:bg-background-2",
         )}
       >
-        <ScrollArea className="h-full w-full min-h-1 *:max-h-[40dvh]">
+        <ScrollArea className="h-full min-h-1 w-full *:max-h-[40dvh]">
           <EditorContent
             editor={editor}
-            className="h-full *:min-h-[40dvh] rounded-2xl *:outline-none *:px-6 *:py-2 cursor-text"
+            className="h-full cursor-text rounded-2xl *:min-h-[40dvh] *:px-6 *:py-2 *:outline-none"
           />
         </ScrollArea>
       </div>

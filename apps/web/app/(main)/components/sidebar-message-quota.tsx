@@ -1,11 +1,11 @@
 "use client";
-import { useMessageQuotas } from "@/hooks/queries/client/use-ai-calls.query";
-import { useSubscriptionByUser } from "@/hooks/queries/client/use-subscriptions.query";
-import { useSession } from "@/hooks/queries/use-session";
 import { Progress } from "@workspace/ui/components/progress";
 import { Separator } from "@workspace/ui/components/separator";
 import { P } from "@workspace/ui/components/typography";
 import { cn } from "@workspace/ui/lib/utils";
+import { useMessageQuotas } from "@/hooks/queries/client/use-ai-calls.query";
+import { useSubscriptionByUser } from "@/hooks/queries/client/use-subscriptions.query";
+import { useSession } from "@/hooks/queries/use-session";
 
 export default function SidebarMessageQuota() {
   const { idUser } = useSession();
@@ -36,13 +36,13 @@ export default function SidebarMessageQuota() {
   return (
     <>
       <div className="px-4 py-2">
-        <P className="text-xs text-muted-foreground mb-1">Free Message Quota</P>
+        <P className="mb-1 text-muted-foreground text-xs">Free Message Quota</P>
         <Progress
           value={quotas.percentageUsed}
-          className="h-1.5 mb-1"
+          className="mb-1 h-1.5"
           indicatorClassName={cn(getProgressColor(quotas.percentageUsed))}
         />
-        <P className="text-xs text-muted-foreground text-right">
+        <P className="text-right text-muted-foreground text-xs">
           {quotas.messagesUsed}/{quotas.messagesLimit} messages in last 3 days
         </P>
       </div>

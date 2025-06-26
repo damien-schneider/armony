@@ -6,11 +6,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 import { useIsClient } from "usehooks-ts";
 
-export const ThemeSwitcher = ({
-  className,
-}: {
-  className?: string;
-}) => {
+export const ThemeSwitcher = ({ className }: { className?: string }) => {
   const { setTheme, theme: activeTheme } = useTheme();
   const listOfThemes = ["light", "dark", "system"] as const;
   const [hoveredTheme, setHoveredTheme] = useState<string | null>(
@@ -69,16 +65,17 @@ export const ThemeSwitcher = ({
   }
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: <>
     <div
-      ref={containerRef}
       className={cn(
-        "relative group inline-flex items-center gap-1 p-0.5 rounded-full",
+        "group relative inline-flex items-center gap-1 rounded-full p-0.5",
         className,
       )}
       onMouseLeave={() => setHoveredTheme(activeTheme ?? null)}
+      ref={containerRef}
     >
       <div
-        className="absolute bg-neutral-400/20 rounded-full transition-all duration-300 ease-out"
+        className="absolute rounded-full bg-neutral-400/20 transition-all duration-300 ease-out"
         style={{
           left: position.left,
           width: position.width,
@@ -90,28 +87,28 @@ export const ThemeSwitcher = ({
       {listOfThemes.map((themeInList) => {
         return (
           <button
-            type="button"
-            key={themeInList}
-            data-theme={themeInList}
-            onClick={() => {
-              setTheme(themeInList);
-            }}
-            onMouseEnter={() => setHoveredTheme(themeInList)}
             className={cn(
-              "relative cursor-pointer size-6 inline-grid place-content-center transition-all duration-300 z-10",
+              "relative z-10 inline-grid size-6 cursor-pointer place-content-center transition-all duration-300",
               activeTheme === themeInList
                 ? "text-foreground"
                 : "text-muted-foreground",
             )}
+            data-theme={themeInList}
+            key={themeInList}
+            onClick={() => {
+              setTheme(themeInList);
+            }}
+            onMouseEnter={() => setHoveredTheme(themeInList)}
+            type="button"
           >
             {themeInList === "system" && (
-              <Monitor color="currentColor" className={cn("size-4")} />
+              <Monitor className={cn("size-4")} color="currentColor" />
             )}
             {themeInList === "dark" && (
-              <Moon color="currentColor" className={cn("size-4")} />
+              <Moon className={cn("size-4")} color="currentColor" />
             )}
             {themeInList === "light" && (
-              <Sun1 color="currentColor" className={cn("size-4")} />
+              <Sun1 className={cn("size-4")} color="currentColor" />
             )}
           </button>
         );

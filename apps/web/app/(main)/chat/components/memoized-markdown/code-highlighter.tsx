@@ -1,10 +1,11 @@
 "use client";
-import { CopyToClipboardButton } from "@/app/(main)/chat/components/copy-button";
 import { cn } from "@workspace/ui/lib/utils";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import type { JSX, ReactNode } from "react";
+import { useEffect, useState } from "react";
 import ShikiHighlighter, { type Element } from "react-shiki";
+import { CopyToClipboardButton } from "@/app/(main)/chat/components/copy-button";
+
 // Using full path to avoid file extension requirement issues
 
 const LANGUAGE_REGEX = /language-(\w+)/;
@@ -74,9 +75,9 @@ export const CodeHighlight = ({
           {content}
         </ShikiHighlighter>
       </div>
-      <div className="absolute w-10 top-0 bottom-0 right-0 pointer-events-none z-20">
-        <div className="size-full relative pb-12">
-          <div className="sticky top-12 right-2 pointer-events-auto">
+      <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-20 w-10">
+        <div className="relative size-full pb-12">
+          <div className="pointer-events-auto sticky top-12 right-2">
             <CopyToClipboardButton
               className="absolute top-2 right-2"
               copyContent={content}

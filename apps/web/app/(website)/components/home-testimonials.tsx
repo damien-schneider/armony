@@ -17,14 +17,14 @@ export function HomeTestimonials() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
           <TestimonialCard
-            className="md:col-span-2 lg:row-span-2 shadow-none"
+            className="shadow-none md:col-span-2 lg:row-span-2"
             name="Jane"
             companyRole="Lead Engineer"
             text="Armony streamlined my AI workflow, saving me over 10 hours a week. The intuitive interface and powerful integrations let me focus on building great products."
             aria-label="Testimonial from Jane, Lead Engineer"
           />
           <TestimonialCard
-            className="md:col-span-2 shadow-none"
+            className="shadow-none md:col-span-2"
             name="Carlos"
             companyRole="CTO"
             text="Switching to Armony cut my onboarding time in half. I was productive from day one, and I love the seamless model switching."
@@ -38,7 +38,7 @@ export function HomeTestimonials() {
             aria-label="Testimonial from Priya, Product Manager"
           />
           <TestimonialCard
-            className="card variant-mixed  shadow-none"
+            className="card variant-mixed shadow-none"
             name="Elena"
             companyRole="Head of Data Science"
             text="Reliable, secure, and always up-to-date. Armony is the backbone of my AI operations."
@@ -65,14 +65,14 @@ function TestimonialCard({
     <Card className={cn("", className)} {...props}>
       <CardContent className="h-full pt-6">
         <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
-          <p className="text-xl font-medium" itemProp="reviewBody">
+          <p className="font-medium text-xl" itemProp="reviewBody">
             {text}
           </p>
           <div>
-            <cite className="text-sm font-medium" itemProp="author">
+            <cite className="font-medium text-sm" itemProp="author">
               <span itemProp="name">{name}</span>
             </cite>
-            <span className="text-muted-foreground block text-sm">
+            <span className="block text-muted-foreground text-sm">
               {companyRole}
             </span>
           </div>

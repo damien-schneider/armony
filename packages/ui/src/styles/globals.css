@@ -60,7 +60,7 @@ input:-webkit-autofill:active {
     --input: --alpha(var(--color-neutral-200) / 100%);
     --ring: --alpha(var(--color-primary) / 40%);
 
-    --radius: 0.60rem;
+    --radius: 0.6rem;
 
     --chart-1: --alpha(var(--color-orange-500) / 100%);
     --chart-2: --alpha(var(--color-teal-600) / 100%);

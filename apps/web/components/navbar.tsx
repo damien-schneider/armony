@@ -1,8 +1,3 @@
-import { HambergerMenu } from "iconsax-react";
-
-import { LogoArmony } from "@/components/logo-armony";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { envClient } from "@/env/client";
 import {
   Accordion,
   AccordionContent,
@@ -25,8 +20,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@workspace/ui/components/sheet";
+import { HambergerMenu } from "iconsax-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { LogoArmony } from "@/components/logo-armony";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { envClient } from "@/env/client";
 
 interface MenuItem {
   title: string;
@@ -129,10 +128,10 @@ export const Navbar = ({
   },
 }: Navbar1Props) => {
   return (
-    <div className="sticky top-0 z-50 bg-background border-b border-border">
-      <section className="py-4 px-4 w-full max-w-7xl mx-auto">
+    <div className="sticky top-0 z-50 border-border border-b bg-background">
+      <section className="mx-auto w-full max-w-7xl px-4 py-4">
         {/* Desktop Menu */}
-        <nav className="hidden justify-between md:flex relative">
+        <nav className="relative hidden justify-between md:flex">
           <div className="flex items-center gap-6">
             <Link href={envClient.NEXT_PUBLIC_BASE_URL}>
               <LogoArmony size="lg" />
@@ -229,7 +228,7 @@ const renderMenuItem = (item: MenuItem) => {
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
         href={item.url}
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
+        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 font-medium text-sm transition-colors hover:bg-muted hover:text-accent-foreground"
       >
         {item.title}
       </NavigationMenuLink>
@@ -241,7 +240,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <AccordionItem key={item.title} value={item.title} className="border-b-0">
-        <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">
+        <AccordionTrigger className="py-0 font-semibold text-md hover:no-underline">
           {item.title}
         </AccordionTrigger>
         <AccordionContent className="mt-2">
@@ -254,7 +253,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <Link key={item.title} href={item.url} className="text-md font-semibold">
+    <Link key={item.title} href={item.url} className="font-semibold text-md">
       {item.title}
     </Link>
   );
@@ -263,14 +262,14 @@ const renderMobileMenuItem = (item: MenuItem) => {
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
     <Link
-      className="flex flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
+      className="flex select-none flex-row gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-accent-foreground"
       href={item.url}
     >
       <div className="text-foreground">{item.icon}</div>
       <div>
-        <div className="text-sm font-semibold">{item.title}</div>
+        <div className="font-semibold text-sm">{item.title}</div>
         {item.description && (
-          <p className="text-sm leading-snug text-muted-foreground">
+          <p className="text-muted-foreground text-sm leading-snug">
             {item.description}
           </p>
         )}

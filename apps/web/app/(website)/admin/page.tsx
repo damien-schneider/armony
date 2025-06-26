@@ -36,11 +36,11 @@ export default function Page() {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-8">Admin Dashboard</h1>
+      <h1 className="mb-8 font-bold text-2xl">Admin Dashboard</h1>
 
       <div className="space-y-8">
         <div>
-          <h2 className="text-xl font-semibold mb-4">Stripe Integration</h2>
+          <h2 className="mb-4 font-semibold text-xl">Stripe Integration</h2>
           <Button onClick={handleUpdateProductsAndPrices} disabled={isLoading}>
             {isLoading ? "Syncing..." : "Update Stripe Product & Prices"}
           </Button>

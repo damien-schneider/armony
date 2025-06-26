@@ -1,9 +1,8 @@
 "use client";
+import type { Session, User } from "@supabase/supabase-js";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@workspace/supabase/client";
-
 import { sessionKey, userKey } from "@/lib/query-key-factory";
-import type { Session, User } from "@supabase/supabase-js";
 
 export const useSession = (): {
   session: Session | undefined | null;

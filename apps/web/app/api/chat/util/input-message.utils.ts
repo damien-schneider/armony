@@ -1,7 +1,7 @@
+import type { Message } from "ai";
 import { base64ToUint8Array } from "@/app/(main)/chat/utils/file-conversion.utils";
 import type { ModelDetails } from "@/app/api/chat/ai-models.type";
 import type { MessageWithImageContent } from "@/app/api/chat/route";
-import type { Message } from "ai";
 
 export function prepareInputMessageContent(
   currentMessage: Message,

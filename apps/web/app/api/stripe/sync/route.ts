@@ -1,9 +1,9 @@
+import { NextResponse } from "next/server";
 import {
   upsertPriceRecord,
   upsertProductRecord,
 } from "@/app/api/stripe/webhook/supabase-admin-stripe-handler";
 import { stripe } from "@/utils/stripe/config";
-import { NextResponse } from "next/server";
 
 export async function POST() {
   try {

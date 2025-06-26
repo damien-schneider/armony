@@ -1,18 +1,18 @@
 "use client";
-import { SidebarChatItem } from "@/app/(main)/components/sidebar-chat-item";
-import { useSpaceContext } from "@/app/(main)/contexts/space-context";
-import { useChatListByIdSpace } from "@/hooks/queries/client/use-chats.query";
 import {
   ScrollArea,
   ScrollAreaViewport,
 } from "@workspace/ui/components/scroll-area";
 import { AnimatePresence, motion } from "motion/react";
+import { SidebarChatItem } from "@/app/(main)/components/sidebar-chat-item";
+import { useSpaceContext } from "@/app/(main)/contexts/space-context";
+import { useChatListByIdSpace } from "@/hooks/queries/client/use-chats.query";
 export default function SidebarChatList() {
   const { activeIdSpace } = useSpaceContext();
   const { data: chatList } = useChatListByIdSpace(activeIdSpace);
 
   return (
-    <ScrollArea className="h-full min-h-1 w-full max-h-full relative">
+    <ScrollArea className="relative h-full max-h-full min-h-1 w-full">
       <ScrollAreaViewport className="*:block!">
         <AnimatePresence mode="popLayout">
           {chatList?.map((chat) => {
