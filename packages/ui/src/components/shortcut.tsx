@@ -7,27 +7,30 @@ import {
 } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 
-const shortcutVariants = cva("inline-flex items-center tracking-widest", {
-  variants: {
-    variant: {
-      default: "bg-muted text-muted-foreground",
-      secondary: "bg-background-2 text-secondary-foreground",
-      outline: "border border-muted-foreground bg-transparent",
-      accent: "text-accent-foreground",
-      destructive: "text-destructive",
-      primary: "text-primary",
+const shortcutVariants = cva(
+  "hidden items-center tracking-widest md:inline-flex",
+  {
+    variants: {
+      variant: {
+        default: "bg-muted text-muted-foreground",
+        secondary: "bg-background-2 text-secondary-foreground",
+        outline: "border border-muted-foreground bg-transparent",
+        accent: "text-accent-foreground",
+        destructive: "text-destructive",
+        primary: "text-primary",
+      },
+      size: {
+        default: "rounded-sm px-1.5 py-1 text-xs",
+        sm: "text-[10px]",
+        lg: "text-sm",
+      },
     },
-    size: {
-      default: "rounded-sm px-1.5 py-1 text-xs",
-      sm: "text-[10px]",
-      lg: "text-sm",
+    defaultVariants: {
+      variant: "default",
+      size: "default",
     },
   },
-  defaultVariants: {
-    variant: "default",
-    size: "default",
-  },
-});
+);
 
 export function Shortcut({
   className,
@@ -55,7 +58,7 @@ export function ShortcutItem({
   };
 
   return (
-    <span className="inline-flex items-center justify-center">
+    <span className="hidden items-center justify-center md:inline-flex">
       {icons[children] ?? children}
     </span>
   );
